@@ -1,0 +1,1 @@
+import{t as e}from"./ExternalDoctorReferrals-DBPtPKDo.js";export{e as default};
