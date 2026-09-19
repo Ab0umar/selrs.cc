@@ -1,0 +1,1 @@
+import{S as e}from"./data-core-DDJcqqA3.js";import{t}from"./utils-CqY2Hinh.js";var n=e();function r({actions:e,children:r,className:i}){return(0,n.jsxs)(`div`,{className:t(`accounting-page space-y-3.5`,i),dir:`rtl`,children:[e?(0,n.jsx)(`div`,{className:`flex flex-wrap items-center justify-start gap-2 print:hidden`,children:e}):null,r]})}export{r as t};

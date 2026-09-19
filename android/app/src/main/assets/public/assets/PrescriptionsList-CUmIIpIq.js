@@ -1,0 +1,1 @@
+import{t as e}from"./PrescriptionsList-jlDapDo8.js";export{e as default};

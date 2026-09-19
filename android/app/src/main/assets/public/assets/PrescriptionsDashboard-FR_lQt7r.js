@@ -1,0 +1,1 @@
+import{t as e}from"./PrescriptionsDashboard-z808OvPk.js";export{e as default};

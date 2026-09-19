@@ -1,0 +1,1 @@
+import{t as e}from"./PatientDetails-BUoYqryf.js";export{e as default};
