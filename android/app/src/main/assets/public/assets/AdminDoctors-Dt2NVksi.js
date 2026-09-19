@@ -1,0 +1,1 @@
+import{t as e}from"./AdminDoctors-gnbACAD-.js";export{e as default};

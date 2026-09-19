@@ -1,0 +1,1 @@
+import{t as e}from"./ConsultantFollowupPage-CZLfHxBc.js";export{e as default};
