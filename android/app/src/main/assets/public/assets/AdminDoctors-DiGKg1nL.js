@@ -1,0 +1,1 @@
+import{t as e}from"./AdminDoctors-DAIRLtd-.js";export{e as default};

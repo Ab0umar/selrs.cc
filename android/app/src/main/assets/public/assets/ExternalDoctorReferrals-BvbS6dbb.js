@@ -1,0 +1,1 @@
+import{t as e}from"./ExternalDoctorReferrals-D0ZHGXV2.js";export{e as default};

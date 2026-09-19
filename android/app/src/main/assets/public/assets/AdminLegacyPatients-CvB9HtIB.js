@@ -1,0 +1,1 @@
+import{t as e}from"./AdminLegacyPatients-CaGqypp4.js";export{e as default};
