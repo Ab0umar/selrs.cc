@@ -1,0 +1,1 @@
+import{t as e}from"./AdminLegacyPatients-dfU1q9O6.js";export{e as default};
