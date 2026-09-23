@@ -1,1 +1,0 @@
-import{t as e}from"./PatientDetails-dmKq_Mxo.js";export{e as default};

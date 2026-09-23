@@ -1,1 +1,0 @@
-import{t as e}from"./MedicalFilePanel-CR2W7Sst.js";export{e as default};

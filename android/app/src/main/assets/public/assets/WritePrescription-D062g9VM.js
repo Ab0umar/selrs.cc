@@ -1,1 +1,0 @@
-import{t as e}from"./WritePrescription-D51HbYLL.js";export{e as default};

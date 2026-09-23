@@ -1,0 +1,1 @@
+import{t as e}from"./PrescriptionsList-Be5f2w67.js";export{e as default};

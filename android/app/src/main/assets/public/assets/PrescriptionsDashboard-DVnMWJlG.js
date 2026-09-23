@@ -1,1 +1,0 @@
-import{t as e}from"./PrescriptionsDashboard-BDhI1EWR.js";export{e as default};

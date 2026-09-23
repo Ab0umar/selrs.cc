@@ -1,1 +1,0 @@
-import{t as e}from"./WritePrescription-BSMMR4oL.js";export{e as default};

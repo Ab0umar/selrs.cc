@@ -1,0 +1,1 @@
+import{t as e}from"./AdminPermissions-D1i2nmJ3.js";export{e as default};

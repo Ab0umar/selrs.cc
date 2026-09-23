@@ -1,1 +1,0 @@
-import{t as e}from"./PentacamPage-Dm37nUw4.js";export{e as default};
