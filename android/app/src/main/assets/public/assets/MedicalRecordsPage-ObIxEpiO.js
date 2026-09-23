@@ -1,1 +1,0 @@
-import{t as e}from"./MedicalRecordsPage-C5a4jZso.js";export{e as default};

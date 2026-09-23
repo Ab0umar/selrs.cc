@@ -1,0 +1,1 @@
+import{t as e}from"./AdminPentacamLinking-CUcXE8HJ.js";export{e as default};

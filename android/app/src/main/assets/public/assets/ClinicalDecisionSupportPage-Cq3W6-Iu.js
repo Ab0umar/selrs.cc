@@ -1,1 +1,0 @@
-import{S as e}from"./data-core-DDJcqqA3.js";import{t}from"./ClinicalDecisionSupport-CH2SPJgs.js";var n=e();function r(){return(0,n.jsx)(`div`,{className:`min-h-screen bg-background text-foreground p-4 sm:p-6`,children:(0,n.jsx)(t,{})})}export{r as default};

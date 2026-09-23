@@ -1,1 +1,0 @@
-import{t as e}from"./ExternalDoctors-Bxfrt9Yd.js";export{e as default};

@@ -1,1 +1,0 @@
-import{t as e}from"./MedicalReference-BqEpA7hL.js";export{e as default};

@@ -1,1 +1,0 @@
-import{t as e}from"./PatientsRecordsPage-Cdamf8cD.js";export{e as default};
