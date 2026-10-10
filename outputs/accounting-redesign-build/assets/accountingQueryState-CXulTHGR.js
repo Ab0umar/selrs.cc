@@ -1,1 +1,0 @@
-import{t as e}from"./accountingFormat-Cc6qHX9_.js";function t(t,n,r=e){return t.isLoading?`جارٍ التحميل`:t.isError||n==null?`تعذر التحميل`:r(n)}export{t};

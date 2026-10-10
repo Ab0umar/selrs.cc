@@ -1,1 +1,0 @@
-import{l as e}from"./vendor-BiRlsUkX.js";export{e as PrinterWeb};

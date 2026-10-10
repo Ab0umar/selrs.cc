@@ -1,1 +1,0 @@
-import{i as e}from"./vendor-BiRlsUkX.js";export{e as PreferencesWeb};

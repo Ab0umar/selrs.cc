@@ -1,1 +1,0 @@
-var e=/\/patient-hub\/(?:file|summary|reports|doctor|brief|examination|prescription|request-tests|visits|followups|pentacam-dashboard|sheets\/consultant)\/(\d+)/;function t(t){return t.split(`?`)[0]?.match(e)?.[1]}export{t};
