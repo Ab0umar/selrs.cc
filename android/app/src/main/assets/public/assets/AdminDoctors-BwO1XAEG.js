@@ -1,1 +1,0 @@
-import{t as e}from"./AdminDoctors-BJ_NZJxC.js";export{e as default};

@@ -1,1 +1,0 @@
-import{t as e}from"./MedicalReports-C1bAd_h7.js";export{e as default};

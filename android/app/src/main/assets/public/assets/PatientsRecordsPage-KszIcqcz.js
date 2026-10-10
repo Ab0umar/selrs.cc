@@ -1,1 +1,0 @@
-import{t as e}from"./PatientsRecordsPage-BGFJBwP9.js";export{e as default};
