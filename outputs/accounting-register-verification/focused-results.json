@@ -1,0 +1,726 @@
+[
+  {
+    "view": "cashbook",
+    "theme": "light",
+    "width": 320,
+    "overflow": false,
+    "mobileNavigation": "PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "advances",
+    "theme": "light",
+    "width": 320,
+    "overflow": false,
+    "mobileNavigation": "PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "loans",
+    "theme": "light",
+    "width": 320,
+    "overflow": false,
+    "mobileNavigation": "PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "instapay",
+    "theme": "light",
+    "width": 320,
+    "overflow": false,
+    "mobileNavigation": "PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "home-fund",
+    "theme": "light",
+    "width": 320,
+    "overflow": false,
+    "mobileNavigation": "PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "dr-saadany",
+    "theme": "light",
+    "width": 320,
+    "overflow": false,
+    "mobileNavigation": "PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "cashbook",
+    "theme": "light",
+    "width": 768,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [],
+    "states": "not run at this width",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "advances",
+    "theme": "light",
+    "width": 768,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "سلفة",
+        "ratio": 7.093506928024853
+      },
+      {
+        "label": "سداد",
+        "ratio": 5.850346831947093
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "الموظف *",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "ربط بموظف الرواتب (اختياري لاستيراد السلفة في الرواتب)",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "ملاحظات",
+        "ratio": 15.43067007971108
+      }
+    ],
+    "states": "not run at this width",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "loans",
+    "theme": "light",
+    "width": 768,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "المبلغ",
+        "ratio": 10.553619959886674
+      },
+      {
+        "label": "السداد",
+        "ratio": 5.850346831947093
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "الاسم",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "ملاحظات",
+        "ratio": 15.43067007971108
+      }
+    ],
+    "states": "not run at this width",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "instapay",
+    "theme": "light",
+    "width": 768,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "منه (إيراد)",
+        "ratio": 5.850346831947093
+      },
+      {
+        "label": "معاه (مصروف)",
+        "ratio": 6.4700447145121895
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "البيان",
+        "ratio": 15.43067007971108
+      }
+    ],
+    "states": "not run at this width",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "home-fund",
+    "theme": "light",
+    "width": 768,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "معاه (إيراد)",
+        "ratio": 5.850346831947093
+      },
+      {
+        "label": "منه (مصروف)",
+        "ratio": 6.4700447145121895
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "البيان",
+        "ratio": 15.43067007971108
+      }
+    ],
+    "states": "not run at this width",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "dr-saadany",
+    "theme": "light",
+    "width": 768,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "سداد",
+        "ratio": 5.850346831947093
+      },
+      {
+        "label": "مسحوبات",
+        "ratio": 6.4700447145121895
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "البيان",
+        "ratio": 15.43067007971108
+      }
+    ],
+    "states": "not run at this width",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "cashbook",
+    "theme": "light",
+    "width": 1440,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [],
+    "states": "loading, error, retry, empty PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "advances",
+    "theme": "light",
+    "width": 1440,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "سلفة",
+        "ratio": 7.093506928024853
+      },
+      {
+        "label": "سداد",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "الموظف *",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "ربط بموظف الرواتب (اختياري لاستيراد السلفة في الرواتب)",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "ملاحظات",
+        "ratio": 15.43067007971108
+      }
+    ],
+    "states": "loading, error, retry, empty PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "loans",
+    "theme": "light",
+    "width": 1440,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "المبلغ",
+        "ratio": 10.553619959886674
+      },
+      {
+        "label": "السداد",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "الاسم",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "ملاحظات",
+        "ratio": 15.43067007971108
+      }
+    ],
+    "states": "loading, error, retry, empty PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "instapay",
+    "theme": "light",
+    "width": 1440,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "منه (إيراد)",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "معاه (مصروف)",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "البيان",
+        "ratio": 15.43067007971108
+      }
+    ],
+    "states": "loading, error, retry, empty PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "home-fund",
+    "theme": "light",
+    "width": 1440,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "معاه (إيراد)",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "منه (مصروف)",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "البيان",
+        "ratio": 15.43067007971108
+      }
+    ],
+    "states": "loading, error, retry, empty PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "dr-saadany",
+    "theme": "light",
+    "width": 1440,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "سداد",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "مسحوبات",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.43067007971108
+      },
+      {
+        "label": "البيان",
+        "ratio": 15.43067007971108
+      }
+    ],
+    "states": "loading, error, retry, empty PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "cashbook",
+    "theme": "dark",
+    "width": 320,
+    "overflow": false,
+    "mobileNavigation": "PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "advances",
+    "theme": "dark",
+    "width": 320,
+    "overflow": false,
+    "mobileNavigation": "PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "loans",
+    "theme": "dark",
+    "width": 320,
+    "overflow": false,
+    "mobileNavigation": "PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "instapay",
+    "theme": "dark",
+    "width": 320,
+    "overflow": false,
+    "mobileNavigation": "PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "home-fund",
+    "theme": "dark",
+    "width": 320,
+    "overflow": false,
+    "mobileNavigation": "PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "dr-saadany",
+    "theme": "dark",
+    "width": 320,
+    "overflow": false,
+    "mobileNavigation": "PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "cashbook",
+    "theme": "dark",
+    "width": 768,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [],
+    "states": "not run at this width",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "advances",
+    "theme": "dark",
+    "width": 768,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "سلفة",
+        "ratio": 12.087293055867876
+      },
+      {
+        "label": "سداد",
+        "ratio": 11.555563632486999
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "الموظف *",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "ربط بموظف الرواتب (اختياري لاستيراد السلفة في الرواتب)",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "ملاحظات",
+        "ratio": 15.834659960608532
+      }
+    ],
+    "states": "not run at this width",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "loans",
+    "theme": "dark",
+    "width": 768,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "المبلغ",
+        "ratio": 9.004036884562662
+      },
+      {
+        "label": "السداد",
+        "ratio": 11.555563632486999
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "الاسم",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "ملاحظات",
+        "ratio": 15.834659960608532
+      }
+    ],
+    "states": "not run at this width",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "instapay",
+    "theme": "dark",
+    "width": 768,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "منه (إيراد)",
+        "ratio": 11.555563632486999
+      },
+      {
+        "label": "معاه (مصروف)",
+        "ratio": 9.28030724431931
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "البيان",
+        "ratio": 15.834659960608532
+      }
+    ],
+    "states": "not run at this width",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "home-fund",
+    "theme": "dark",
+    "width": 768,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "معاه (إيراد)",
+        "ratio": 11.555563632486999
+      },
+      {
+        "label": "منه (مصروف)",
+        "ratio": 9.28030724431931
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "البيان",
+        "ratio": 15.834659960608532
+      }
+    ],
+    "states": "not run at this width",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "dr-saadany",
+    "theme": "dark",
+    "width": 768,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "سداد",
+        "ratio": 11.555563632486999
+      },
+      {
+        "label": "مسحوبات",
+        "ratio": 9.28030724431931
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "البيان",
+        "ratio": 15.834659960608532
+      }
+    ],
+    "states": "not run at this width",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "cashbook",
+    "theme": "dark",
+    "width": 1440,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [],
+    "states": "loading, error, retry, empty PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "advances",
+    "theme": "dark",
+    "width": 1440,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "سلفة",
+        "ratio": 12.087293055867876
+      },
+      {
+        "label": "سداد",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "الموظف *",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "ربط بموظف الرواتب (اختياري لاستيراد السلفة في الرواتب)",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "ملاحظات",
+        "ratio": 15.834659960608532
+      }
+    ],
+    "states": "loading, error, retry, empty PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "loans",
+    "theme": "dark",
+    "width": 1440,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "المبلغ",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "السداد",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "الاسم",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "ملاحظات",
+        "ratio": 15.834659960608532
+      }
+    ],
+    "states": "loading, error, retry, empty PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "instapay",
+    "theme": "dark",
+    "width": 1440,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "منه (إيراد)",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "معاه (مصروف)",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "البيان",
+        "ratio": 15.834659960608532
+      }
+    ],
+    "states": "loading, error, retry, empty PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "home-fund",
+    "theme": "dark",
+    "width": 1440,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "معاه (إيراد)",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "منه (مصروف)",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "البيان",
+        "ratio": 15.834659960608532
+      }
+    ],
+    "states": "loading, error, retry, empty PASS",
+    "data": "isolated fixtures; no financial writes"
+  },
+  {
+    "view": "dr-saadany",
+    "theme": "dark",
+    "width": 1440,
+    "overflow": false,
+    "keyboardEditing": "PASS",
+    "fieldLabelContrast": [
+      {
+        "label": "سداد",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "مسحوبات",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "التاريخ",
+        "ratio": 15.834659960608532
+      },
+      {
+        "label": "البيان",
+        "ratio": 15.834659960608532
+      }
+    ],
+    "states": "loading, error, retry, empty PASS",
+    "data": "isolated fixtures; no financial writes"
+  }
+]

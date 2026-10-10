@@ -1,0 +1,1 @@
+import{n as e}from"./vendor-BiRlsUkX.js";export{e as SplashScreenWeb};

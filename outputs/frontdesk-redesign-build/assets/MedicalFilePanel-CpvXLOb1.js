@@ -1,0 +1,1 @@
+import{t as e}from"./MedicalFilePanel-BZGONPrm.js";export{e as default};

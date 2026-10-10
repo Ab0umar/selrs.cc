@@ -1,0 +1,1 @@
+import{t as e}from"./ExternalDoctorReferrals-D2pyubvS.js";export{e as default};

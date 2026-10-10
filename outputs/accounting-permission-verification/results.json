@@ -1,0 +1,92 @@
+[
+  {
+    "scenario": "cashbook-only",
+    "theme": "light",
+    "links": [
+      "/accounting/cashbook"
+    ],
+    "children": [],
+    "errors": [],
+    "mutations": []
+  },
+  {
+    "scenario": "loans-only",
+    "theme": "light",
+    "links": [],
+    "children": [
+      "/accounting/loans"
+    ],
+    "errors": [],
+    "mutations": []
+  },
+  {
+    "scenario": "admin",
+    "theme": "light",
+    "links": [
+      "/accounting",
+      "/accounting/cashbook",
+      "/accounting/daily-revenue",
+      "/accounting/service-revenue",
+      "/accounting/services",
+      "/accounting/receipts",
+      "/accounting/patients-inquiry",
+      "/accounting/doctor-account",
+      "/accounting/lasik-cost"
+    ],
+    "children": [
+      "/accounting/advances",
+      "/accounting/loans",
+      "/accounting/instapay",
+      "/accounting/home-fund",
+      "/accounting/dr-saadany",
+      "/accounting/expenses"
+    ],
+    "errors": [],
+    "mutations": []
+  },
+  {
+    "scenario": "cashbook-only",
+    "theme": "dark",
+    "links": [
+      "/accounting/cashbook"
+    ],
+    "children": [],
+    "errors": [],
+    "mutations": []
+  },
+  {
+    "scenario": "loans-only",
+    "theme": "dark",
+    "links": [],
+    "children": [
+      "/accounting/loans"
+    ],
+    "errors": [],
+    "mutations": []
+  },
+  {
+    "scenario": "admin",
+    "theme": "dark",
+    "links": [
+      "/accounting",
+      "/accounting/cashbook",
+      "/accounting/daily-revenue",
+      "/accounting/service-revenue",
+      "/accounting/services",
+      "/accounting/receipts",
+      "/accounting/patients-inquiry",
+      "/accounting/doctor-account",
+      "/accounting/lasik-cost"
+    ],
+    "children": [
+      "/accounting/advances",
+      "/accounting/loans",
+      "/accounting/instapay",
+      "/accounting/home-fund",
+      "/accounting/dr-saadany",
+      "/accounting/expenses"
+    ],
+    "errors": [],
+    "mutations": []
+  }
+]

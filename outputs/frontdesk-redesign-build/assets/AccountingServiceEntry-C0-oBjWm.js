@@ -1,0 +1,1 @@
+import{t as e}from"./AccountingServiceEntry-BQ0BUAVr.js";export{e as default};

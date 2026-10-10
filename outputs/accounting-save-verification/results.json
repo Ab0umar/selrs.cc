@@ -1,0 +1,340 @@
+[
+  {
+    "kind": "ledger",
+    "theme": "light",
+    "calls": [
+      {
+        "url": "/api/trpc/accounting.addAccEntry",
+        "body": {
+          "0": {
+            "json": {
+              "txDate": "2026-10-02",
+              "income": 123,
+              "expense": 0,
+              "notes": "اختبار حفظ معزول",
+              "remarks": ""
+            }
+          }
+        }
+      },
+      {
+        "url": "/api/trpc/accounting.addAccEntry",
+        "body": {
+          "0": {
+            "json": {
+              "txDate": "2026-10-02",
+              "income": 123,
+              "expense": 0,
+              "notes": "اختبار حفظ معزول",
+              "remarks": ""
+            }
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "pendingLocked": true,
+    "repeatedSubmitBlocked": true,
+    "failedDraftRetained": true,
+    "successCleared": true
+  },
+  {
+    "kind": "service",
+    "theme": "light",
+    "calls": [
+      {
+        "url": "/api/trpc/accounting.addPatientServices",
+        "body": {
+          "0": {
+            "json": {
+              "patientCode": "000999",
+              "doctorCode": null,
+              "doctorName": null,
+              "shiftNumber": null,
+              "serviceDate": "2026-10-02",
+              "lines": [
+                {
+                  "serviceCode": "1600",
+                  "serviceName": "خدمة اختبار",
+                  "quantity": 1,
+                  "discount": null,
+                  "price": 123
+                }
+              ]
+            },
+            "meta": {
+              "values": {
+                "doctorCode": [
+                  "undefined"
+                ],
+                "doctorName": [
+                  "undefined"
+                ],
+                "shiftNumber": [
+                  "undefined"
+                ],
+                "lines.0.discount": [
+                  "undefined"
+                ]
+              },
+              "v": 1
+            }
+          }
+        }
+      },
+      {
+        "url": "/api/trpc/accounting.addPatientServices",
+        "body": {
+          "0": {
+            "json": {
+              "patientCode": "000999",
+              "doctorCode": null,
+              "doctorName": null,
+              "shiftNumber": null,
+              "serviceDate": "2026-10-02",
+              "lines": [
+                {
+                  "serviceCode": "1600",
+                  "serviceName": "خدمة اختبار",
+                  "quantity": 1,
+                  "discount": null,
+                  "price": 123
+                }
+              ]
+            },
+            "meta": {
+              "values": {
+                "doctorCode": [
+                  "undefined"
+                ],
+                "doctorName": [
+                  "undefined"
+                ],
+                "shiftNumber": [
+                  "undefined"
+                ],
+                "lines.0.discount": [
+                  "undefined"
+                ]
+              },
+              "v": 1
+            }
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "pendingLocked": true,
+    "repeatedSubmitBlocked": true,
+    "failedDraftRetained": true,
+    "successCleared": true
+  },
+  {
+    "kind": "loan",
+    "theme": "light",
+    "calls": [
+      {
+        "url": "/api/trpc/accounting.addAccLoan",
+        "body": {
+          "0": {
+            "json": {
+              "txDate": "2026-10-02",
+              "name": "موظف اختبار",
+              "amount": 123,
+              "repayment": 0,
+              "notes": "اختبار حفظ معزول"
+            }
+          }
+        }
+      },
+      {
+        "url": "/api/trpc/accounting.addAccLoan",
+        "body": {
+          "0": {
+            "json": {
+              "txDate": "2026-10-02",
+              "name": "موظف اختبار",
+              "amount": 123,
+              "repayment": 0,
+              "notes": "اختبار حفظ معزول"
+            }
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "pendingLocked": true,
+    "repeatedSubmitBlocked": true,
+    "failedDraftRetained": true,
+    "successCleared": true
+  },
+  {
+    "kind": "ledger",
+    "theme": "dark",
+    "calls": [
+      {
+        "url": "/api/trpc/accounting.addAccEntry",
+        "body": {
+          "0": {
+            "json": {
+              "txDate": "2026-10-02",
+              "income": 123,
+              "expense": 0,
+              "notes": "اختبار حفظ معزول",
+              "remarks": ""
+            }
+          }
+        }
+      },
+      {
+        "url": "/api/trpc/accounting.addAccEntry",
+        "body": {
+          "0": {
+            "json": {
+              "txDate": "2026-10-02",
+              "income": 123,
+              "expense": 0,
+              "notes": "اختبار حفظ معزول",
+              "remarks": ""
+            }
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "pendingLocked": true,
+    "repeatedSubmitBlocked": true,
+    "failedDraftRetained": true,
+    "successCleared": true
+  },
+  {
+    "kind": "service",
+    "theme": "dark",
+    "calls": [
+      {
+        "url": "/api/trpc/accounting.addPatientServices",
+        "body": {
+          "0": {
+            "json": {
+              "patientCode": "000999",
+              "doctorCode": null,
+              "doctorName": null,
+              "shiftNumber": null,
+              "serviceDate": "2026-10-02",
+              "lines": [
+                {
+                  "serviceCode": "1600",
+                  "serviceName": "خدمة اختبار",
+                  "quantity": 1,
+                  "discount": null,
+                  "price": 123
+                }
+              ]
+            },
+            "meta": {
+              "values": {
+                "doctorCode": [
+                  "undefined"
+                ],
+                "doctorName": [
+                  "undefined"
+                ],
+                "shiftNumber": [
+                  "undefined"
+                ],
+                "lines.0.discount": [
+                  "undefined"
+                ]
+              },
+              "v": 1
+            }
+          }
+        }
+      },
+      {
+        "url": "/api/trpc/accounting.addPatientServices",
+        "body": {
+          "0": {
+            "json": {
+              "patientCode": "000999",
+              "doctorCode": null,
+              "doctorName": null,
+              "shiftNumber": null,
+              "serviceDate": "2026-10-02",
+              "lines": [
+                {
+                  "serviceCode": "1600",
+                  "serviceName": "خدمة اختبار",
+                  "quantity": 1,
+                  "discount": null,
+                  "price": 123
+                }
+              ]
+            },
+            "meta": {
+              "values": {
+                "doctorCode": [
+                  "undefined"
+                ],
+                "doctorName": [
+                  "undefined"
+                ],
+                "shiftNumber": [
+                  "undefined"
+                ],
+                "lines.0.discount": [
+                  "undefined"
+                ]
+              },
+              "v": 1
+            }
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "pendingLocked": true,
+    "repeatedSubmitBlocked": true,
+    "failedDraftRetained": true,
+    "successCleared": true
+  },
+  {
+    "kind": "loan",
+    "theme": "dark",
+    "calls": [
+      {
+        "url": "/api/trpc/accounting.addAccLoan",
+        "body": {
+          "0": {
+            "json": {
+              "txDate": "2026-10-02",
+              "name": "موظف اختبار",
+              "amount": 123,
+              "repayment": 0,
+              "notes": "اختبار حفظ معزول"
+            }
+          }
+        }
+      },
+      {
+        "url": "/api/trpc/accounting.addAccLoan",
+        "body": {
+          "0": {
+            "json": {
+              "txDate": "2026-10-02",
+              "name": "موظف اختبار",
+              "amount": 123,
+              "repayment": 0,
+              "notes": "اختبار حفظ معزول"
+            }
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "pendingLocked": true,
+    "repeatedSubmitBlocked": true,
+    "failedDraftRetained": true,
+    "successCleared": true
+  }
+]

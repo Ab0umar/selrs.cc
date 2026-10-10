@@ -1,0 +1,1 @@
+import{t as e}from"./WritePrescription-C3pmtE0k.js";export{e as default};

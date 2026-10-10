@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ar" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>SELRS · اتجاه 02</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --canvas: oklch(0.97 0.012 252);
+      --surface: oklch(0.997 0.003 250);
+      --surface-alt: oklch(0.94 0.03 253);
+      --ink: oklch(0.27 0.052 257);
+      --muted: oklch(0.52 0.03 257);
+      --faint: oklch(0.68 0.02 257);
+      --line: oklch(0.89 0.018 255);
+      --blue: oklch(0.45 0.15 258);
+      --blue-pale: oklch(0.91 0.055 255);
+      --orange: oklch(0.69 0.18 44);
+      --orange-pale: oklch(0.94 0.05 55);
+      --green: oklch(0.52 0.12 150);
+      --green-pale: oklch(0.94 0.028 150);
+      --amber: oklch(0.63 0.14 76);
+      --amber-pale: oklch(0.95 0.04 82);
+      --red: oklch(0.54 0.16 25);
+      --red-pale: oklch(0.94 0.04 25);
+      --radius: 11px;
+      font-family: "Segoe UI", Tahoma, system-ui, sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+    * { box-sizing: border-box; }
+    html, body { min-width: 320px; width: 100%; max-width: 100%; min-height: 100%; margin: 0; overflow-x: hidden; background: var(--canvas); color: var(--ink); }
+    body { font-size: 14px; }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    button:focus-visible, input:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+    .version-strip { direction: rtl; display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 45px; padding: 0 22px; background: var(--ink); color: oklch(0.98 0.006 252); }
+    .version-title { display: flex; align-items: center; gap: 9px; font-size: 10px; }
+    .version-number { display: grid; place-items: center; min-width: 24px; height: 24px; padding: 0 5px; border-radius: 6px; background: var(--orange); color: var(--ink); font-size: 10px; font-weight: 800; }
+    .version-note { color: oklch(0.82 0.02 255); font-size: 10px; }
+    .app-shell { direction: ltr; display: grid; grid-template-columns: minmax(0, 1fr) 248px; width: 100%; max-width: 1560px; min-height: calc(100vh - 45px); margin: 0 auto; }
+    .main { grid-column: 1; grid-row: 1; direction: rtl; min-width: 0; padding: 26px clamp(20px, 3vw, 42px) 38px; }
+    .sidebar { grid-column: 2; grid-row: 1; direction: rtl; display: flex; flex-direction: column; min-width: 0; padding: 23px 17px 17px; background: var(--surface-alt); border-inline-start: 1px solid var(--line); }
+    .brand { display: flex; align-items: center; gap: 10px; padding: 0 3px 22px; border-bottom: 1px solid oklch(0.86 0.03 255); }
+    .brand img { width: 40px; height: 40px; flex: none; border-radius: 10px; object-fit: contain; background: var(--surface); }
+    .brand strong { display: block; font-size: 12px; font-weight: 760; }
+    .brand small { display: block; margin-top: 3px; color: var(--muted); font-size: 9px; }
+    .clinic-tag { display: flex; align-items: center; gap: 7px; margin: 19px 4px 8px; color: var(--muted); font-size: 9px; font-weight: 700; }
+    .clinic-tag::before { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); content: ""; }
+    .side-nav { display: flex; flex-direction: column; gap: 3px; }
+    .side-nav button { display: flex; align-items: center; gap: 11px; width: 100%; min-height: 43px; padding: 0 10px; border: 0; border-radius: 8px; background: transparent; color: var(--muted); text-align: right; font-size: 10px; font-weight: 670; cursor: pointer; transition: background-color 160ms cubic-bezier(.22,1,.36,1), color 160ms cubic-bezier(.22,1,.36,1); }
+    .side-nav button:hover { background: oklch(0.96 0.02 255); color: var(--ink); }
+    .side-nav button[aria-current="page"] { background: var(--blue); color: var(--surface); }
+    .nav-mark { display: grid; place-items: center; width: 24px; height: 24px; flex: none; border-radius: 7px; background: oklch(0.97 0.014 255); color: var(--blue); font-size: 9px; font-weight: 800; }
+    .side-nav button[aria-current="page"] .nav-mark { background: oklch(0.54 0.14 258); color: var(--surface); }
+    .side-label { margin: 23px 5px 7px; color: var(--faint); font-size: 9px; font-weight: 750; }
+    .sidebar-spacer { flex: 1; min-height: 28px; }
+    .sidebar-footer { padding: 13px 11px; border: 1px solid oklch(0.87 0.032 255); border-radius: 9px; background: oklch(0.96 0.024 255); }
+    .sidebar-footer strong { display: block; font-size: 10px; }
+    .sidebar-footer p { margin: 5px 0 0; color: var(--muted); font-size: 9px; line-height: 1.6; }
+    .topline { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 34px; margin-bottom: 28px; }
+    .breadcrumb { color: var(--muted); font-size: 10px; }
+    .top-actions { display: flex; align-items: center; gap: 8px; }
+    .mini-search { display: flex; align-items: center; gap: 8px; width: 220px; height: 35px; padding: 0 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+    .mini-search span { color: var(--blue); font-size: 16px; }
+    .mini-search input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 10px; }
+    .mini-search input::placeholder { color: var(--faint); }
+    .avatar { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--line); border-radius: 50%; background: var(--surface); color: var(--blue); font-size: 10px; font-weight: 760; }
+    .screen[hidden] { display: none !important; }
+    .screen-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; margin-bottom: 23px; }
+    .eyebrow { margin-bottom: 7px; color: var(--blue); font-size: 9px; font-weight: 780; letter-spacing: .035em; }
+    h1, h2, h3, p { margin-block-start: 0; }
+    h1 { margin-bottom: 6px; font-size: 29px; line-height: 1.24; letter-spacing: -.02em; font-weight: 760; }
+    h2 { margin-bottom: 0; font-size: 13px; line-height: 1.45; font-weight: 740; }
+    h3 { margin-bottom: 0; font-size: 11px; font-weight: 730; }
+    .lead { max-width: 65ch; margin: 0; color: var(--muted); font-size: 11px; line-height: 1.7; }
+    .today-mark { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 9px 12px; border-inline-start: 2px solid var(--orange); color: var(--muted); font-size: 9px; white-space: nowrap; }
+    .today-mark strong { color: var(--ink); font-size: 11px; }
+    .action-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 36px; padding: 0 12px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface); color: var(--ink); font-size: 10px; font-weight: 700; cursor: pointer; transition: background-color 150ms cubic-bezier(.22,1,.36,1), transform 150ms cubic-bezier(.22,1,.36,1); }
+    .button:hover { background: var(--blue-pale); }
+    .button:active { transform: translateY(1px); }
+    .button.primary { border-color: var(--orange); background: var(--orange); color: var(--ink); }
+    .button.primary:hover { background: oklch(0.65 0.18 44); }
+    .button.quiet { border-color: transparent; background: transparent; color: var(--blue); }
+    .home-grid { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(275px, .85fr); align-items: start; gap: 16px; }
+    .section-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; margin-bottom: 8px; }
+    .section-heading p { margin: 4px 0 0; color: var(--muted); font-size: 9px; }
+    .count-pill, .tag { display: inline-flex; align-items: center; justify-content: center; min-height: 22px; padding: 0 8px; border-radius: 999px; background: var(--blue-pale); color: var(--blue); font-size: 9px; font-weight: 740; white-space: nowrap; }
+    .count-pill.orange { background: var(--orange-pale); color: var(--ink); }
+    .agenda { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .agenda-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 57px; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+    .agenda-head .date-control { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 9px; }
+    .date-control button { width: 25px; height: 25px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--blue); cursor: pointer; }
+    .time-list { padding: 2px 14px 8px; }
+    .time-row { display: grid; grid-template-columns: 49px 16px minmax(0, 1fr); gap: 9px; align-items: stretch; min-height: 63px; }
+    .time-label { padding-top: 17px; color: var(--muted); font-size: 9px; font-weight: 750; font-variant-numeric: tabular-nums; }
+    .time-track { position: relative; display: flex; justify-content: center; }
+    .time-track::before { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--line); content: ""; }
+    .time-row:first-child .time-track::before { top: 17px; }
+    .time-row:last-child .time-track::before { bottom: 30px; }
+    .time-dot { z-index: 1; width: 8px; height: 8px; margin-top: 18px; border: 2px solid var(--surface); border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+    .time-dot.orange { background: var(--orange); box-shadow: 0 0 0 1px var(--orange); }
+    .time-dot.green { background: var(--green); box-shadow: 0 0 0 1px var(--green); }
+    .appointment { display: flex; align-items: center; gap: 9px; min-width: 0; margin: 6px 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+    .appointment.current { border-color: oklch(0.82 0.07 54); background: var(--orange-pale); }
+    .patient-code { display: grid; place-items: center; width: 28px; height: 28px; flex: none; border-radius: 50%; background: var(--surface); color: var(--blue); font-size: 8px; font-weight: 780; }
+    .appointment-copy { flex: 1; min-width: 0; }
+    .appointment-copy strong { display: block; overflow: hidden; color: var(--ink); text-overflow: ellipsis; white-space: nowrap; font-size: 10px; }
+    .appointment-copy small { display: block; margin-top: 3px; overflow: hidden; color: var(--muted); text-overflow: ellipsis; white-space: nowrap; font-size: 8px; }
+    .tag.green { background: var(--green-pale); color: var(--green); }
+    .tag.amber { background: var(--amber-pale); color: var(--amber); }
+    .tag.red { background: var(--red-pale); color: var(--red); }
+    .queue { border-top: 2px solid var(--ink); }
+    .queue-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 0 10px; }
+    .queue-head small { color: var(--muted); font-size: 9px; }
+    .queue-row { display: flex; align-items: center; gap: 9px; min-height: 57px; border-bottom: 1px solid var(--line); }
+    .queue-row:last-child { border-bottom: 0; }
+    .queue-order { width: 20px; color: var(--faint); font-size: 9px; font-weight: 760; font-variant-numeric: tabular-nums; }
+    .queue-copy { flex: 1; min-width: 0; }
+    .queue-copy strong { display: block; font-size: 10px; }
+    .queue-copy small { display: block; margin-top: 3px; color: var(--muted); font-size: 8px; }
+    .queue-time { color: var(--muted); font-size: 9px; font-weight: 730; white-space: nowrap; }
+    .shift-summary { display: flex; align-items: stretch; margin-top: 19px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); }
+    .shift-stat { flex: 1; padding: 11px 12px; border-inline-start: 1px solid var(--line); }
+    .shift-stat:first-child { border-inline-start: 0; }
+    .shift-stat strong { display: block; font-size: 19px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+    .shift-stat small { display: block; margin-top: 4px; color: var(--muted); font-size: 8px; }
+    .notice-line { display: flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 12px; border-radius: 8px; background: var(--blue-pale); color: var(--blue); font-size: 9px; }
+    .notice-line strong { color: var(--ink); }
+    .flat-table { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .flat-table-head, .flat-row { display: grid; grid-template-columns: 1.1fr 1.3fr .9fr .9fr .8fr; align-items: center; gap: 12px; min-width: 690px; padding: 0 15px; }
+    .flat-table-head { min-height: 38px; background: var(--surface-alt); color: var(--muted); font-size: 9px; font-weight: 720; }
+    .flat-row { min-height: 55px; border-top: 1px solid var(--line); font-size: 10px; }
+    .flat-row strong { font-size: 10px; }
+    .flat-row small { color: var(--muted); font-size: 9px; }
+    .flat-wrap { overflow-x: auto; }
+    .metric-band { display: flex; align-items: stretch; margin-bottom: 18px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
+    .metric { flex: 1; min-width: 0; padding: 13px 15px; border-inline-start: 1px solid var(--line); }
+    .metric:first-child { border-inline-start: 0; }
+    .metric strong { display: block; font-size: 20px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+    .metric small { display: block; margin-top: 5px; color: var(--muted); font-size: 9px; }
+    .work-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(255px, .62fr); gap: 18px; align-items: start; }
+    .work-list { border-top: 2px solid var(--ink); }
+    .work-row { display: flex; align-items: center; gap: 11px; min-height: 57px; border-bottom: 1px solid var(--line); }
+    .work-mark { display: grid; place-items: center; width: 25px; height: 25px; flex: none; border-radius: 7px; background: var(--blue-pale); color: var(--blue); font-size: 9px; font-weight: 800; }
+    .work-copy { flex: 1; min-width: 0; }
+    .work-copy strong { display: block; font-size: 10px; }
+    .work-copy small { display: block; margin-top: 3px; color: var(--muted); font-size: 9px; }
+    .admin-tools { display: flex; flex-direction: column; gap: 8px; }
+    .admin-tools input { width: 100%; height: 38px; padding: 0 11px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface); font-size: 10px; }
+    .filter-bar { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; margin: 7px 0 21px; }
+    .filter-bar button { min-height: 29px; padding: 0 9px; border: 1px solid transparent; border-radius: 999px; background: transparent; color: var(--muted); font-size: 9px; cursor: pointer; }
+    .filter-bar button[aria-pressed="true"] { border-color: var(--line); background: var(--surface); color: var(--ink); }
+    .admin-layout { display: grid; grid-template-columns: minmax(150px, .55fr) minmax(0, 1.45fr); gap: 22px; align-items: start; }
+    .admin-index { position: sticky; top: 12px; display: flex; flex-direction: column; gap: 2px; padding-top: 4px; }
+    .admin-index a { padding: 9px 10px; border-radius: 6px; color: var(--muted); text-decoration: none; font-size: 9px; }
+    .admin-index a:hover { background: var(--surface-alt); color: var(--ink); }
+    .admin-groups { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px 26px; }
+    .admin-group { min-width: 0; }
+    .admin-group h2 { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 0 9px; border-bottom: 2px solid var(--ink); font-size: 11px; }
+    .admin-group h2 small { color: var(--muted); font-size: 8px; font-weight: 600; }
+    .admin-item { display: flex; align-items: center; gap: 9px; min-height: 43px; border-bottom: 1px solid var(--line); }
+    .admin-item[hidden], .admin-group[hidden] { display: none !important; }
+    .admin-item strong { flex: 1; min-width: 0; font-size: 9px; font-weight: 680; }
+    .admin-item span { color: var(--blue); font-size: 12px; }
+    .admin-empty { display: none; padding: 18px 0; color: var(--muted); font-size: 10px; }
+    .admin-empty.visible { display: block; }
+    .footnote { margin-top: 21px; padding-top: 11px; border-top: 1px solid var(--line); color: var(--faint); font-size: 8px; line-height: 1.7; }
+    @media (max-width: 980px) {
+      .app-shell { grid-template-columns: minmax(0,1fr) 216px; }
+      .main { padding-inline: 21px; }
+      .home-grid { grid-template-columns: minmax(0,1.3fr) minmax(245px,.9fr); gap: 12px; }
+      .work-grid { grid-template-columns: minmax(0,1fr) minmax(225px,.72fr); gap: 12px; }
+    }
+    @media (max-width: 760px) {
+      .app-shell { display: flex; flex-direction: column; }
+      .sidebar { order: 1; padding: 10px 14px 8px; border-inline-start: 0; border-bottom: 1px solid var(--line); }
+      .brand { padding: 0 2px 9px; border: 0; }
+      .brand img { width: 32px; height: 32px; }
+      .clinic-tag, .side-label, .sidebar-spacer, .sidebar-footer { display: none; }
+      .side-nav { flex-direction: row; gap: 4px; overflow-x: auto; padding-top: 6px; }
+      .side-nav button { width: auto; flex: 0 0 auto; min-height: 36px; padding: 0 9px; font-size: 9px; }
+      .nav-mark { width: 20px; height: 20px; }
+      .main { order: 2; padding: 19px 14px 30px; }
+      .topline { margin-bottom: 22px; }
+      .mini-search { width: min(45vw, 200px); }
+      .screen-head { align-items: flex-start; flex-direction: column; gap: 8px; }
+      h1 { font-size: 25px; }
+      .today-mark { flex-direction: row; align-items: center; gap: 9px; border-inline-start: 0; border-bottom: 2px solid var(--orange); padding: 0 0 6px; }
+      .home-grid, .work-grid { grid-template-columns: minmax(0,1fr); }
+      .admin-layout { grid-template-columns: minmax(0,1fr); }
+      .admin-index { position: static; flex-direction: row; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+      .admin-groups { grid-template-columns: minmax(0,1fr); gap: 18px; }
+      .version-strip { padding-inline: 14px; }
+      .version-note { display: none; }
+    }
+    @media (max-width: 520px) {
+      .version-strip { min-height: 40px; }
+      .topline { align-items: flex-start; flex-direction: column; gap: 9px; }
+      .top-actions { width: 100%; }
+      .mini-search { flex: 1; width: auto; }
+      .action-row > * { flex: 1 1 42%; }
+      .metric-band { flex-wrap: wrap; }
+      .metric { flex: 1 1 45%; min-height: 60px; }
+      .metric:nth-child(2) { border-inline-start: 0; }
+      .metric:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .agenda-head { align-items: flex-start; flex-direction: column; }
+      .time-row { grid-template-columns: 43px 13px minmax(0,1fr); gap: 7px; }
+      .appointment { gap: 6px; padding-inline: 7px; }
+      .tag { padding-inline: 6px; font-size: 8px; }
+      .flat-table-head, .flat-row { grid-template-columns: .9fr 1.2fr .8fr .8fr .75fr; gap: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <div class="version-strip" dir="rtl">
+    <div class="version-title"><span class="version-number">02</span><strong>اتجاه جديد</strong><span>التنقل الجانبي والجدول الزمني أولاً</span></div>
+    <span class="version-note">معاينة منفصلة عن تطبيق SELRS</span>
+  </div>
+  <div class="app-shell">
+    <main class="main">
+      <div class="topline">
+        <div class="breadcrumb" id="breadcrumb">العيادة / الرئيسية</div>
+        <div class="top-actions"><label class="mini-search"><span aria-hidden="true">⌕</span><input id="global-search" placeholder="بحث عن ملف أو خدمة" aria-label="بحث عن ملف أو خدمة"></label><span class="avatar" aria-label="فريق العمل">م</span></div>
+      </div>
+
+      <section class="screen" id="screen-home" aria-label="الرئيسية">
+        <div class="screen-head"><div><div class="eyebrow">الخميس · ٢ أكتوبر ٢٠٢٦ · القاهرة</div><h1>جدول العيادة اليوم</h1><p class="lead">نظرة تشغيلية مباشرة على المواعيد، الطابور، وأول ما يحتاج انتباه الفريق.</p></div><div class="today-mark"><strong>نوبة الصباح</strong><span>٠٨:٠٠ – ١٤:٠٠</span></div></div>
+        <div class="action-row"><button class="button primary" type="button" id="add-patient">+ تسجيل مريض</button><button class="button" type="button" id="book-appointment">حجز موعد</button><button class="button quiet" type="button" data-view="dashboard">فتح لوحة التشغيل ←</button></div>
+        <p id="home-feedback" class="footnote" aria-live="polite" style="display:none;margin:0 0 14px;padding:8px 10px;background:var(--blue-pale);border:0;border-radius:7px"></p>
+        <div class="home-grid">
+          <section>
+            <div class="section-heading"><div><h2>مسار المواعيد</h2><p>الزيارة القادمة مميزة، والوقت يظل محور المتابعة</p></div><span class="count-pill">٤٢ موعداً</span></div>
+            <div class="agenda">
+              <div class="agenda-head"><div><h2>الفترة الصباحية</h2><p style="margin:4px 0 0;color:var(--muted);font-size:9px">العيادات الخارجية · ١٢ موعداً حتى الظهر</p></div><div class="date-control"><button type="button" aria-label="اليوم السابق">‹</button><span>اليوم · ٢ أكتوبر</span><button type="button" aria-label="اليوم التالي">›</button></div></div>
+              <div class="time-list">
+                <div class="time-row"><span class="time-label">٠٩:٣٠</span><span class="time-track"><i class="time-dot green"></i></span><div class="appointment"><span class="patient-code">م</span><span class="appointment-copy"><strong>ملف ١٠٤٢ · متابعة بعد الإجراء</strong><small>د. سامر · الغرفة ٢</small></span><span class="tag green">وصل</span></div></div>
+                <div class="time-row"><span class="time-label">١٠:٠٠</span><span class="time-track"><i class="time-dot orange"></i></span><div class="appointment current"><span class="patient-code">م</span><span class="appointment-copy"><strong>ملف ٢٢٥٨ · كشف استشاري</strong><small>د. سارة · الغرفة ١</small></span><span class="tag amber">التالي</span></div></div>
+                <div class="time-row"><span class="time-label">١٠:٣٠</span><span class="time-track"><i class="time-dot"></i></span><div class="appointment"><span class="patient-code">م</span><span class="appointment-copy"><strong>ملف ٣١٨٦ · قياسات أولية</strong><small>وحدة الفحوصات · محطة ٢</small></span><span class="tag">قادم</span></div></div>
+                <div class="time-row"><span class="time-label">١١:٠٠</span><span class="time-track"><i class="time-dot"></i></span><div class="appointment"><span class="patient-code">م</span><span class="appointment-copy"><strong>ملف ٤٠٧١ · مراجعة</strong><small>د. سامر · الغرفة ٢</small></span><span class="tag">قادم</span></div></div>
+                <div class="time-row"><span class="time-label">١١:٣٠</span><span class="time-track"><i class="time-dot"></i></span><div class="appointment"><span class="patient-code">م</span><span class="appointment-copy"><strong>ملف ٥١٩٠ · متابعة</strong><small>د. سارة · الغرفة ١</small></span><span class="tag">قادم</span></div></div>
+              </div>
+            </div>
+            <div class="shift-summary"><div class="shift-stat"><strong>١٥</strong><small>زيارات مكتملة</small></div><div class="shift-stat"><strong>٠٨</strong><small>في الانتظار</small></div><div class="shift-stat"><strong>٠٣</strong><small>إجراءات اليوم</small></div></div>
+          </section>
+          <aside>
+            <div class="section-heading"><div><h2>طابور الاستقبال</h2><p>من وصل إلى ما ينتظر دوره</p></div><span class="count-pill orange">٨ ملفات</span></div>
+            <div class="queue">
+              <div class="queue-head"><strong>بانتظار الخدمة</strong><small>متوسط الانتظار ١٢ د</small></div>
+              <div class="queue-row"><span class="queue-order">٠١</span><span class="queue-copy"><strong>ملف ٧٣١٢</strong><small>استقبال أولي</small></span><span class="queue-time">٠٩:٤٢</span></div>
+              <div class="queue-row"><span class="queue-order">٠٢</span><span class="queue-copy"><strong>ملف ٨٤٠٣</strong><small>قياسات</small></span><span class="queue-time">٠٩:٤٨</span></div>
+              <div class="queue-row"><span class="queue-order">٠٣</span><span class="queue-copy"><strong>ملف ٩٢١٧</strong><small>مراجعة عيادة</small></span><span class="queue-time">٠٩:٥٢</span></div>
+              <div class="queue-row"><span class="queue-order">٠٤</span><span class="queue-copy"><strong>ملف ٦٣٨١</strong><small>استكمال ملف</small></span><span class="queue-time">١٠:٠١</span></div>
+            </div>
+            <div class="notice-line"><strong>تنبيه:</strong><span>ملفان ينتظران استكمال بيانات الاستقبال.</span></div>
+          </aside>
+        </div>
+        <p class="footnote">اتجاه مستقل للمراجعة. جميع المواعيد والأرقام ومعرّفات الملفات أمثلة توضيحية، وليست بيانات حية.</p>
+      </section>
+
+      <section class="screen" id="screen-dashboard" aria-label="لوحة التشغيل" hidden>
+        <div class="screen-head"><div><div class="eyebrow">التشغيل · الخميس ٢ أكتوبر ٢٠٢٦</div><h1>طابور العمل</h1><p class="lead">حالات الزيارة مرتبة حسب الأولوية والوقت، بدون تكرار مؤشرات في بطاقات منفصلة.</p></div><button class="button" type="button">اليوم · ٢ أكتوبر</button></div>
+        <div class="metric-band"><div class="metric"><strong>٤٢</strong><small>موعد اليوم</small></div><div class="metric"><strong>٠٨</strong><small>في الانتظار</small></div><div class="metric"><strong>١٥</strong><small>زيارة مكتملة</small></div><div class="metric"><strong>٠٣</strong><small>إجراء مجدول</small></div></div>
+        <div class="work-grid">
+          <section><div class="section-heading"><div><h2>حالات نشطة</h2><p>الخطوة التالية واضحة بجانب كل ملف</p></div><span class="count-pill">٨ ملفات</span></div>
+            <div class="flat-wrap"><div class="flat-table"><div class="flat-table-head"><span>الملف</span><span>نوع الزيارة</span><span>المسؤول</span><span>وصل</span><span>الحالة</span></div>
+              <div class="flat-row"><strong>ملف ١٠٤٢</strong><span>متابعة بعد الإجراء</span><span>د. سامر</span><small>٠٩:٢٢</small><span class="tag green">في العيادة</span></div>
+              <div class="flat-row"><strong>ملف ٢٢٥٨</strong><span>كشف استشاري</span><span>د. سارة</span><small>٠٩:٤٦</small><span class="tag amber">ينتظر</span></div>
+              <div class="flat-row"><strong>ملف ٣١٨٦</strong><span>قياسات أولية</span><span>الفحوصات</span><small>٠٩:٥١</small><span class="tag">تجهيز</span></div>
+              <div class="flat-row"><strong>ملف ٤٠٧١</strong><span>مراجعة</span><span>د. سامر</span><small>١٠:٠٢</small><span class="tag amber">قادم</span></div>
+              <div class="flat-row"><strong>ملف ٥١٩٠</strong><span>متابعة</span><span>د. سارة</span><small>١٠:٠٨</small><span class="tag">قادم</span></div>
+            </div></div>
+          </section>
+          <aside><div class="section-heading"><div><h2>مراقبة التشغيل</h2><p>ما يستحق الانتباه في النوبة</p></div></div>
+            <div class="work-list">
+              <div class="work-row"><span class="work-mark" style="background:var(--green-pale);color:var(--green)">✓</span><span class="work-copy"><strong>الفريق الطبي</strong><small>١٢ من ١٣ سجّلوا الحضور</small></span><span class="tag green">مستقر</span></div>
+              <div class="work-row"><span class="work-mark" style="background:var(--amber-pale);color:var(--amber)">!</span><span class="work-copy"><strong>مخزون الفحوصات</strong><small>عنصر واحد يحتاج متابعة</small></span><span class="tag amber">تنبيه</span></div>
+              <div class="work-row"><span class="work-mark">↻</span><span class="work-copy"><strong>المزامنة الأخيرة</strong><small>١٠:٢٦ ص</small></span><span class="tag">متصل</span></div>
+              <div class="work-row"><span class="work-mark" style="background:var(--red-pale);color:var(--red)">٢</span><span class="work-copy"><strong>ملفات غير مكتملة</strong><small>تحتاج مراجعة الاستقبال</small></span><span class="tag red">متابعة</span></div>
+            </div>
+          </aside>
+        </div>
+        <p class="footnote">بيانات التشغيل افتراضية. لا توجد اتصالات بخدمات أو سجلات فعلية.</p>
+      </section>
+
+      <section class="screen" id="screen-admin" aria-label="مركز الإدارة" hidden>
+        <div class="screen-head"><div><div class="eyebrow">الإعداد والصلاحيات · للمخولين فقط</div><h1>مركز الإدارة</h1><p class="lead">فهرس أدوات إداري، مصمم للعثور على المهمة لا لاستعراض شبكة بطاقات متكررة.</p></div><span class="today-mark"><strong>اتجاه 02</strong><span>واجهة توضيحية</span></span></div>
+        <div class="filter-bar" role="group" aria-label="تصفية الأدوات"><button type="button" data-filter="all" aria-pressed="true">جميع الأدوات</button><button type="button" data-filter="staff" aria-pressed="false">الفريق</button><button type="button" data-filter="clinical" aria-pressed="false">العيادات</button><button type="button" data-filter="patient" aria-pressed="false">المرضى</button><button type="button" data-filter="system" aria-pressed="false">النظام</button></div>
+        <div class="admin-layout">
+          <nav class="admin-index" aria-label="مجموعات الإدارة"><a href="#staff-tools">الكادر والصلاحيات</a><a href="#clinical-tools">الخدمات والملفات</a><a href="#patient-tools">المرضى والبوابة</a><a href="#system-tools">النظام والصيانة</a></nav>
+          <div>
+            <div class="admin-tools"><input id="admin-search" type="search" placeholder="ابحث باسم الأداة أو المهمة" aria-label="بحث إداري"></div>
+            <div class="admin-groups" id="admin-groups">
+              <section class="admin-group" id="staff-tools" data-group="staff"><h2>الكادر والصلاحيات <small>٤ مهام</small></h2><div class="admin-item" data-category="staff" data-search="المستخدمون الحسابات"><strong>المستخدمون والحسابات</strong><span>←</span></div><div class="admin-item" data-category="staff" data-search="الأطباء التخصصات"><strong>الأطباء والتخصصات</strong><span>←</span></div><div class="admin-item" data-category="staff" data-search="الأدوار الصلاحيات"><strong>الأدوار والصلاحيات</strong><span>←</span></div><div class="admin-item" data-category="staff" data-search="الحضور الجداول"><strong>الحضور والجداول</strong><span>←</span></div></section>
+              <section class="admin-group" id="clinical-tools" data-group="clinical"><h2>الخدمات والملفات <small>٤ مهام</small></h2><div class="admin-item" data-category="clinical" data-search="ربط الخدمات التكويد"><strong>ربط الخدمات والتكويد</strong><span>←</span></div><div class="admin-item" data-category="clinical" data-search="الفحوصات الأسعار"><strong>الفحوصات والأسعار</strong><span>←</span></div><div class="admin-item" data-category="clinical" data-search="النماذج ملفات الفحص"><strong>نماذج ملفات الفحص</strong><span>←</span></div><div class="admin-item" data-category="clinical" data-search="البنتاكام الصور"><strong>البنتاكام والصور</strong><span>←</span></div></section>
+              <section class="admin-group" id="patient-tools" data-group="patient"><h2>المرضى والبوابة <small>٤ مهام</small></h2><div class="admin-item" data-category="patient" data-search="سجل المرضى"><strong>سجل المرضى الكلي</strong><span>←</span></div><div class="admin-item" data-category="patient" data-search="الأرشيف التاريخي"><strong>الأرشيف التاريخي</strong><span>←</span></div><div class="admin-item" data-category="patient" data-search="حجوزات البوابة"><strong>حجوزات البوابة</strong><span>←</span></div><div class="admin-item" data-category="patient" data-search="الرسائل واتساب"><strong>الرسائل والتواصل</strong><span>←</span></div></section>
+              <section class="admin-group" id="system-tools" data-group="system"><h2>النظام والصيانة <small>٤ مهام</small></h2><div class="admin-item" data-category="system" data-search="حالة النظام الاتصال"><strong>حالة النظام والاتصال</strong><span>←</span></div><div class="admin-item" data-category="system" data-search="قاعدة البيانات التحديثات"><strong>التحديثات وقاعدة البيانات</strong><span>←</span></div><div class="admin-item" data-category="system" data-search="سجل العمليات"><strong>سجل العمليات</strong><span>←</span></div><div class="admin-item" data-category="system" data-search="التسعير"><strong>قواعد التسعير</strong><span>←</span></div></section>
+            </div>
+            <p id="admin-empty" class="admin-empty" aria-live="polite">لا توجد مهام مطابقة.</p>
+          </div>
+        </div>
+        <p class="footnote">نموذج محلي فقط. الأدوات والصلاحيات غير متصلة بالتطبيق الحقيقي.</p>
+      </section>
+    </main>
+
+    <aside class="sidebar" aria-label="التنقل الرئيسي">
+      <div class="brand"><img src="assets/selrs-mark.png" alt="شعار عيون الشروق"><div><strong>عيون الشروق</strong><small>نظام إدارة المركز</small></div></div>
+      <div class="clinic-tag">فرع القاهرة</div>
+      <div class="side-label">مساحة العمل</div>
+      <nav class="side-nav">
+        <button type="button" data-view="home" aria-current="page"><span class="nav-mark">١</span><span>جدول العيادة</span></button>
+        <button type="button" data-view="dashboard"><span class="nav-mark">٢</span><span>لوحة التشغيل</span></button>
+      </nav>
+      <div class="side-label">الإدارة</div>
+      <nav class="side-nav">
+        <button type="button" data-view="admin"><span class="nav-mark">٣</span><span>مركز الإدارة</span></button>
+        <button type="button" data-view="admin"><span class="nav-mark">٤</span><span>الكادر والصلاحيات</span></button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-footer"><strong>بيانات توضيحية</strong><p>هذه المعاينة لا تتصل بملفات المرضى أو خدمات المركز.</p></div>
+    </aside>
+  </div>
+  <script>
+    const screens=[...document.querySelectorAll('.screen')];
+    const labels={home:'الرئيسية',dashboard:'لوحة التشغيل',admin:'مركز الإدارة'};
+    function showScreen(name){
+      screens.forEach(s=>s.hidden=s.id!==`screen-${name}`);
+      document.querySelectorAll('.side-nav [data-view]').forEach(b=>{
+        const active=b.dataset.view===name;
+        b.toggleAttribute('aria-current',active);
+        if(active)b.setAttribute('aria-current','page');
+      });
+      document.getElementById('breadcrumb').textContent=`العيادة / ${labels[name]||labels.home}`;
+      document.title=`SELRS · ${labels[name]||labels.home} · اتجاه 02`;
+    }
+    document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>showScreen(b.dataset.view)));
+    const feedback=document.getElementById('home-feedback');
+    document.getElementById('add-patient').addEventListener('click',()=>{feedback.textContent='إجراء توضيحي فقط، التسجيل غير متصل بقاعدة البيانات.';feedback.style.display='block';});
+    document.getElementById('book-appointment').addEventListener('click',()=>{feedback.textContent='إجراء توضيحي فقط، الحجز غير متصل بالتطبيق.';feedback.style.display='block';});
+    document.getElementById('global-search').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();feedback.textContent='البحث هنا توضيحي فقط، لا توجد قاعدة بيانات متصلة.';feedback.style.display='block';}});
+    let category='all';
+    const search=document.getElementById('admin-search');
+    const items=[...document.querySelectorAll('.admin-item')];
+    const groups=[...document.querySelectorAll('.admin-group')];
+    function filterAdmin(){
+      const q=search.value.trim().toLocaleLowerCase('ar');let count=0;
+      items.forEach(item=>{const cat=category==='all'||item.dataset.category===category;const match=!q||`${item.dataset.search} ${item.innerText}`.toLocaleLowerCase('ar').includes(q);item.hidden=!(cat&&match);if(!item.hidden)count++;});
+      groups.forEach(g=>g.hidden=!g.querySelector('.admin-item:not([hidden])'));
+      document.getElementById('admin-empty').classList.toggle('visible',count===0);
+    }
+    document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{category=button.dataset.filter;document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));filterAdmin();}));
+    search.addEventListener('input',filterAdmin);
+    const requestedView=new URLSearchParams(window.location.search).get('view');
+    if(['dashboard','admin'].includes(requestedView)) showScreen(requestedView);
+  </script>
+</body>
+</html>

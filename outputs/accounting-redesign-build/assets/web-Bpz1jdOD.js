@@ -1,0 +1,1 @@
+import{a as e}from"./vendor-BiRlsUkX.js";export{e as NetworkWeb};

@@ -1,0 +1,1 @@
+import{t as e}from"./PatientDetails-D2iBsZBX.js";export{e as default};

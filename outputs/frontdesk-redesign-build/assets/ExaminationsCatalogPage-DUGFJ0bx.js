@@ -1,0 +1,1 @@
+import{E as e}from"./data-core-CrqxPXdn.js";import{t}from"./TestsCatalogDashboard-XpZoQa6U.js";var n=e();function r(){return(0,n.jsx)(t,{mode:`examinations`,embeddedInHub:!0})}export{r as default};

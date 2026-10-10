@@ -1,0 +1,1 @@
+import{t as e}from"./ConsultantFollowupPage-Be2D4-lu.js";export{e as default};

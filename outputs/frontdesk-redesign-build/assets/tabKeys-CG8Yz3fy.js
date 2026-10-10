@@ -1,0 +1,1 @@
+function e(e,t,n,r,i){let a=t.indexOf(n);if(a<0)return;let o=a;if(e.key===`ArrowLeft`)o=(a+1)%t.length;else if(e.key===`ArrowRight`)o=(a-1+t.length)%t.length;else if(e.key===`Home`)o=0;else if(e.key===`End`)o=t.length-1;else return;e.preventDefault(),r(t[o]),window.setTimeout(()=>document.getElementById(i(t[o]))?.focus(),0)}export{e as t};

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ar" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>SELRS · لوحة النوبة · اتجاه 03</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: oklch(0.19 0.025 250);
+      --surface: oklch(0.23 0.028 250);
+      --surface-2: oklch(0.27 0.029 250);
+      --line: oklch(0.35 0.027 250);
+      --ink: oklch(0.92 0.015 84);
+      --muted: oklch(0.69 0.024 245);
+      --faint: oklch(0.53 0.025 248);
+      --signal: oklch(0.76 0.16 65);
+      --signal-deep: oklch(0.69 0.17 48);
+      --signal-ink: oklch(0.23 0.045 57);
+      --green: oklch(0.77 0.105 146);
+      --amber: oklch(0.79 0.13 82);
+      --red: oklch(0.72 0.15 28);
+      --radius: 4px;
+      font-family: "Segoe UI", Tahoma, system-ui, sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; max-width: 100%; min-width: 320px; min-height: 100%; margin: 0; overflow-x: hidden; background: var(--bg); color: var(--ink); }
+    body { font-size: 14px; }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    button:focus-visible, input:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+    .frame { width: min(1220px, calc(100% - 44px)); margin: 0 auto 0 22px; direction: rtl; }
+    .system-line { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 38px; padding: 0 22px; border-bottom: 1px solid var(--line); background: oklch(0.16 0.022 250); color: var(--muted); font-size: 9px; letter-spacing: .04em; }
+    .live-state { display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-weight: 750; }
+    .live-state::before { width: 7px; height: 7px; border-radius: 50%; background: var(--green); content: ""; box-shadow: 0 0 0 3px oklch(0.31 0.04 145); }
+    .system-right { color: var(--signal); font-weight: 750; }
+    .masthead { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 17px 0 15px; border-bottom: 1px solid var(--line); }
+    .identity { display: flex; align-items: center; gap: 11px; }
+    .identity img { width: 42px; height: 42px; object-fit: contain; background: oklch(0.96 0.01 85); }
+    .identity strong { display: block; font-size: 13px; font-weight: 760; }
+    .identity small { display: block; margin-top: 4px; color: var(--muted); font-size: 8px; letter-spacing: .13em; }
+    .masthead-meta { display: flex; align-items: center; gap: 20px; color: var(--muted); font-size: 9px; }
+    .masthead-meta span + span { padding-inline-start: 18px; border-inline-start: 1px solid var(--line); }
+    .navigation { display: flex; align-items: stretch; min-height: 46px; border-bottom: 1px solid var(--line); }
+    .navigation button { display: flex; align-items: center; gap: 9px; padding: 0 18px; border: 0; border-inline-start: 1px solid var(--line); background: transparent; color: var(--muted); font-size: 10px; cursor: pointer; }
+    .navigation button:first-child { padding-inline-start: 0; border-inline-start: 0; }
+    .navigation button[aria-current="page"] { color: var(--signal); font-weight: 760; }
+    .nav-index { color: var(--faint); font-size: 9px; font-variant-numeric: tabular-nums; }
+    .navigation button[aria-current="page"] .nav-index { color: var(--signal); }
+    main { padding: 25px 0 42px; }
+    .screen[hidden] { display: none !important; }
+    .page-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 18px; }
+    .eyebrow { margin-bottom: 7px; color: var(--signal); font-size: 9px; font-weight: 780; letter-spacing: .09em; }
+    h1,h2,h3,p { margin-block-start: 0; }
+    h1 { margin-bottom: 5px; font-size: 31px; line-height: 1.2; letter-spacing: -.025em; font-weight: 730; }
+    h2 { margin-bottom: 0; font-size: 12px; font-weight: 730; }
+    h3 { margin-bottom: 0; font-size: 10px; font-weight: 700; }
+    .lede { max-width: 60ch; margin: 0; color: var(--muted); font-size: 10px; line-height: 1.65; }
+    .clock-block { flex: none; text-align: left; }
+    .clock-block strong { display: block; color: var(--signal); font-size: 22px; line-height: 1; font-variant-numeric: tabular-nums; }
+    .clock-block small { display: block; margin-top: 6px; color: var(--muted); font-size: 8px; }
+    .telemetry { display: flex; align-items: stretch; margin: 19px 0 17px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .telemetry-item { display: flex; align-items: baseline; gap: 9px; flex: 1; min-height: 48px; padding: 10px 13px; border-inline-start: 1px solid var(--line); }
+    .telemetry-item:first-child { border-inline-start: 0; padding-inline-start: 0; }
+    .telemetry-item strong { color: var(--ink); font-size: 18px; font-variant-numeric: tabular-nums; }
+    .telemetry-item .accent-num { color: var(--signal); }
+    .telemetry-item span { color: var(--muted); font-size: 9px; }
+    .board-label { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 39px; margin-top: 14px; border-top: 2px solid var(--ink); }
+    .board-label h2 { font-size: 11px; letter-spacing: .03em; }
+    .board-label small { color: var(--muted); font-size: 8px; }
+    .wallboard { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.55fr) minmax(220px, .8fr); min-height: 390px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
+    .focus-stage { display: flex; flex-direction: column; justify-content: space-between; min-width: 0; padding: 18px 18px 17px; background: var(--signal); color: var(--signal-ink); }
+    .focus-stage .stage-label { font-size: 8px; font-weight: 800; letter-spacing: .12em; }
+    .focus-time { margin: 24px 0 14px; font-size: 48px; line-height: .95; font-weight: 760; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+    .focus-stage h2 { max-width: 16ch; font-size: 17px; line-height: 1.45; }
+    .focus-stage p { margin: 7px 0 0; font-size: 9px; line-height: 1.6; }
+    .stage-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 11px; border-top: 1px solid oklch(0.42 0.12 52); font-size: 9px; font-weight: 720; }
+    .stage-footer button { min-height: 29px; padding: 0 9px; border: 1px solid var(--signal-ink); border-radius: 2px; background: transparent; color: var(--signal-ink); font-size: 8px; font-weight: 750; cursor: pointer; }
+    .room-board { min-width: 0; padding: 15px 16px 12px; border-inline-start: 1px solid var(--line); }
+    .room-title { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 31px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+    .room-title small { color: var(--muted); font-size: 8px; }
+    .room-lanes { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); min-height: 315px; }
+    .room-lane { min-width: 0; padding: 0 9px; border-inline-start: 1px solid var(--line); }
+    .room-lane:first-child { border-inline-start: 0; padding-inline-start: 0; }
+    .room-lane:last-child { padding-inline-end: 0; }
+    .lane-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; min-height: 35px; border-bottom: 1px solid var(--line); }
+    .lane-head strong { font-size: 9px; }
+    .lane-head span { color: var(--faint); font-size: 8px; }
+    .lane-appointment { margin-top: 10px; padding: 8px 7px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .lane-appointment.is-current { border-color: var(--signal); background: oklch(0.30 0.035 250); }
+    .lane-appointment time { display: block; margin-bottom: 5px; color: var(--signal); font-size: 8px; font-weight: 770; }
+    .lane-appointment strong { display: block; font-size: 9px; line-height: 1.45; }
+    .lane-appointment small { display: block; margin-top: 4px; color: var(--muted); font-size: 8px; line-height: 1.5; }
+    .queue-rail { min-width: 0; padding: 15px 14px 12px; border-inline-start: 1px solid var(--line); background: oklch(0.215 0.026 250); }
+    .queue-rail-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding-bottom: 9px; border-bottom: 1px solid var(--line); }
+    .queue-count { color: var(--signal); font-size: 24px; font-weight: 760; font-variant-numeric: tabular-nums; }
+    .queue-count small { color: var(--muted); font-size: 8px; font-weight: 500; }
+    .queue-entry { display: grid; grid-template-columns: 22px minmax(0,1fr) auto; align-items: center; gap: 7px; min-height: 52px; border-bottom: 1px solid var(--line); }
+    .queue-entry .order { color: var(--faint); font-size: 8px; font-variant-numeric: tabular-nums; }
+    .queue-entry strong { display: block; font-size: 9px; }
+    .queue-entry small { display: block; margin-top: 3px; color: var(--muted); font-size: 8px; }
+    .queue-entry time { color: var(--muted); font-size: 8px; }
+    .queue-warning { margin-top: 12px; padding: 9px 0; border-top: 1px solid var(--amber); color: var(--amber); font-size: 8px; line-height: 1.6; }
+    .secondary-line { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 18px; }
+    .secondary-block { border-top: 1px solid var(--line); }
+    .secondary-title { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding: 9px 0 6px; }
+    .secondary-title small { color: var(--muted); font-size: 8px; }
+    .mini-row { display: flex; align-items: center; justify-content: space-between; gap: 9px; min-height: 34px; border-top: 1px solid var(--line); font-size: 9px; }
+    .mini-row span:last-child { color: var(--muted); font-size: 8px; }
+    .button { min-height: 31px; padding: 0 10px; border: 1px solid var(--line); border-radius: 2px; background: transparent; color: var(--ink); font-size: 9px; font-weight: 700; cursor: pointer; }
+    .button:hover { border-color: var(--signal); color: var(--signal); }
+    .button.primary { border-color: var(--signal); background: var(--signal); color: var(--signal-ink); }
+    .button.primary:hover { background: transparent; color: var(--signal); }
+    .table-scroll { overflow-x: auto; }
+    .ops-table { min-width: 690px; }
+    .ops-head, .ops-row { display: grid; grid-template-columns: .9fr 1.25fr .9fr .8fr .7fr; align-items: center; gap: 12px; padding: 0 12px; }
+    .ops-head { min-height: 38px; background: var(--surface-2); color: var(--muted); font-size: 8px; font-weight: 740; }
+    .ops-row { min-height: 49px; border-bottom: 1px solid var(--line); font-size: 9px; }
+    .ops-row:nth-child(odd) { background: var(--surface); }
+    .ops-row strong { font-size: 9px; }
+    .ops-row small { color: var(--muted); font-size: 8px; }
+    .state { color: var(--muted); font-size: 8px; font-weight: 700; }
+    .state.go { color: var(--green); }
+    .state.wait { color: var(--amber); }
+    .state.alert { color: var(--red); }
+    .triage-board { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 0; margin-top: 18px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .triage-lane { min-width: 0; padding: 0 15px 14px; border-inline-start: 1px solid var(--line); }
+    .triage-lane:first-child { border-inline-start: 0; padding-inline-start: 0; }
+    .triage-lane:last-child { padding-inline-end: 0; }
+    .triage-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; min-height: 49px; border-bottom: 2px solid var(--ink); }
+    .triage-head strong { font-size: 11px; }
+    .triage-head span { color: var(--signal); font-size: 17px; font-weight: 760; }
+    .triage-row { padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .triage-row strong { display: block; font-size: 9px; }
+    .triage-row small { display: block; margin-top: 4px; color: var(--muted); font-size: 8px; }
+    .admin-tools { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 15px 0 0; padding: 10px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .admin-tools input { width: min(340px,100%); min-height: 32px; padding: 0 9px; border: 1px solid var(--line); border-radius: 2px; background: var(--surface); color: var(--ink); font-size: 9px; }
+    .filters { display: flex; gap: 0; flex-wrap: wrap; }
+    .filters button { min-height: 28px; padding: 0 9px; border: 0; border-inline-start: 1px solid var(--line); background: transparent; color: var(--muted); font-size: 8px; cursor: pointer; }
+    .filters button:first-child { border-inline-start: 0; }
+    .filters button[aria-pressed="true"] { color: var(--signal); font-weight: 800; }
+    .admin-directory { display: flex; flex-direction: column; }
+    .admin-group { display: grid; grid-template-columns: minmax(175px,.55fr) minmax(0,1.45fr); gap: 22px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+    .admin-group[hidden], .admin-entry[hidden] { display: none !important; }
+    .admin-group-title { display: flex; align-items: baseline; gap: 10px; }
+    .admin-group-title span { color: var(--signal); font-size: 18px; font-weight: 800; }
+    .admin-group-title strong { font-size: 10px; }
+    .admin-entries { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 18px; }
+    .admin-entry { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 34px; border-bottom: 1px solid var(--line); font-size: 9px; }
+    .admin-entry span { color: var(--signal); }
+    .no-results { display: none; padding: 14px 0; color: var(--muted); font-size: 9px; }
+    .no-results.visible { display: block; }
+    .footnote { margin: 20px 0 0; padding-top: 9px; border-top: 1px solid var(--line); color: var(--faint); font-size: 8px; line-height: 1.7; }
+    @media (max-width: 1040px) {
+      .wallboard { grid-template-columns: minmax(0,1fr) minmax(0,1.2fr); }
+      .queue-rail { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); column-gap: 14px; border-inline-start: 0; border-top: 1px solid var(--line); }
+      .queue-rail-head, .queue-warning { grid-column: 1 / -1; }
+      .queue-rail-head { margin-bottom: 5px; }
+      .queue-entry { min-height: 43px; }
+    }
+    @media (max-width: 760px) {
+      .frame { width: calc(100% - 28px); margin-left: 14px; }
+      .system-line { padding-inline: 14px; }
+      .system-right { display: none; }
+      .masthead { align-items: flex-start; flex-direction: column; gap: 10px; padding: 13px 0; }
+      .masthead-meta { flex-wrap: wrap; gap: 10px; }
+      .masthead-meta span + span { padding-inline-start: 10px; }
+      .navigation button { padding-inline: 10px; }
+      .page-top { align-items: flex-start; flex-direction: column; gap: 9px; }
+      h1 { font-size: 26px; }
+      .clock-block { display: flex; align-items: baseline; gap: 8px; text-align: right; }
+      .clock-block small { margin: 0; }
+      .wallboard { grid-template-columns: minmax(0,1fr); }
+      .focus-stage { min-height: 210px; }
+      .room-board { border-inline-start: 0; border-top: 1px solid var(--line); }
+      .queue-rail { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .secondary-line, .triage-board { grid-template-columns: minmax(0,1fr); gap: 14px; }
+      .triage-lane { padding: 0 0 10px; border-inline-start: 0; border-bottom: 1px solid var(--line); }
+      .admin-group { grid-template-columns: minmax(0,1fr); gap: 8px; }
+    }
+    @media (max-width: 500px) {
+      .system-line { min-height: 33px; font-size: 8px; }
+      .navigation { min-height: 42px; }
+      .navigation button { gap: 5px; padding-inline: 7px; font-size: 8px; }
+      .telemetry { flex-wrap: wrap; }
+      .telemetry-item { flex: 1 1 45%; min-height: 42px; }
+      .telemetry-item:nth-child(2) { border-inline-start: 0; }
+      .telemetry-item:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .room-lanes { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .room-lane:last-child { display: none; }
+      .queue-rail { grid-template-columns: minmax(0,1fr); }
+      .admin-tools { align-items: stretch; flex-direction: column; }
+      .admin-entries { grid-template-columns: minmax(0,1fr); }
+      .ops-head, .ops-row { gap: 8px; padding-inline: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <div class="system-line"><span class="live-state">وضع التشغيل التجريبي · غرفة العمليات</span><span class="system-right">DARK ROOM CONCEPT / 03</span></div>
+  <header class="frame">
+    <div class="masthead">
+      <div class="identity"><img src="assets/selrs-mark.png" alt="شعار عيون الشروق"><div><strong>مركز عيون الشروق</strong><small>OPERATIONS WALLBOARD</small></div></div>
+      <div class="masthead-meta"><span>القاهرة</span><span>الخميس · ٢ أكتوبر ٢٠٢٦</span><span>فريق الصباح</span></div>
+    </div>
+    <nav class="navigation" aria-label="شاشات المعاينة"><button type="button" data-view="home" aria-current="page"><span class="nav-index">01</span>لوحة النوبة</button><button type="button" data-view="dashboard"><span class="nav-index">02</span>الحالات</button><button type="button" data-view="admin"><span class="nav-index">03</span>الإدارة</button></nav>
+  </header>
+  <main class="frame">
+    <section class="screen" id="screen-home" aria-label="لوحة النوبة">
+      <div class="page-top"><div><div class="eyebrow">OR / RECOVERY · MORNING SHIFT</div><h1>حالة المركز <span style="color:var(--signal)">الآن</span></h1><p class="lede">لوحة قراءة سريعة للبيئة منخفضة الإضاءة: الحالة التالية، مسارات الغرف، وطابور الاستقبال في مشهد واحد.</p></div><div class="clock-block"><strong>١٠:٠٠</strong><small>آخر تحديث توضيحي</small></div></div>
+      <div class="telemetry"><div class="telemetry-item"><strong class="accent-num">٤٢</strong><span>موعد اليوم</span></div><div class="telemetry-item"><strong>٠٨</strong><span>ينتظرون</span></div><div class="telemetry-item"><strong>١٥</strong><span>أُنجزت</span></div><div class="telemetry-item"><strong>٠٣</strong><span>إجراءات</span></div></div>
+      <div class="board-label"><h2>غرف العمل / الترتيب الزمني</h2><small>كل المعرّفات افتراضية · لا توجد بيانات حية</small></div>
+      <div class="wallboard">
+        <section class="focus-stage"><span class="stage-label">NEXT CASE / 01</span><div><div class="focus-time">١٠:٠٠</div><h2>ملف ٢٢٥٨<br>كشف استشاري</h2><p>د. سارة · الغرفة ١ · تم تسجيل الوصول</p></div><div class="stage-footer"><span>الخطوة التالية في العيادة</span><button type="button" id="focus-action">فتح المعاينة</button></div></section>
+        <section class="room-board"><div class="room-title"><h2>مسارات الغرف</h2><small>الفترة الصباحية · حتى ١٢:٠٠</small></div><div class="room-lanes">
+          <div class="room-lane"><div class="lane-head"><strong>عيادة ١</strong><span>٠٤</span></div><div class="lane-appointment is-current"><time>١٠:٠٠</time><strong>ملف ٢٢٥٨</strong><small>كشف استشاري<br>د. سارة</small></div><div class="lane-appointment"><time>١١:٣٠</time><strong>ملف ٥١٩٠</strong><small>متابعة<br>د. سارة</small></div></div>
+          <div class="room-lane"><div class="lane-head"><strong>عيادة ٢</strong><span>٠٣</span></div><div class="lane-appointment"><time>٠٩:٣٠</time><strong>ملف ١٠٤٢</strong><small>متابعة بعد الإجراء<br>د. سامر</small></div><div class="lane-appointment"><time>١١:٠٠</time><strong>ملف ٤٠٧١</strong><small>مراجعة<br>د. سامر</small></div></div>
+          <div class="room-lane"><div class="lane-head"><strong>الفحوصات</strong><span>٠٥</span></div><div class="lane-appointment"><time>١٠:٣٠</time><strong>ملف ٣١٨٦</strong><small>قياسات أولية<br>محطة ٢</small></div><div class="lane-appointment"><time>١١:١٥</time><strong>ملف ٦٠٢١</strong><small>فحص متابعة<br>محطة ١</small></div></div>
+        </div></section>
+        <aside class="queue-rail"><div class="queue-rail-head"><h2>طابور الاستقبال</h2><span class="queue-count">٠٨ <small>ملفات</small></span></div>
+          <div class="queue-entry"><span class="order">01</span><span><strong>ملف ٧٣١٢</strong><small>استقبال أولي</small></span><time>٠٩:٤٢</time></div>
+          <div class="queue-entry"><span class="order">02</span><span><strong>ملف ٨٤٠٣</strong><small>قياسات</small></span><time>٠٩:٤٨</time></div>
+          <div class="queue-entry"><span class="order">03</span><span><strong>ملف ٩٢١٧</strong><small>مراجعة</small></span><time>٠٩:٥٢</time></div>
+          <div class="queue-entry"><span class="order">04</span><span><strong>ملف ٦٣٨١</strong><small>استكمال ملف</small></span><time>١٠:٠١</time></div>
+          <div class="queue-warning">تنبيه · ملفان بحاجة لاستكمال بيانات الاستقبال.</div>
+        </aside>
+      </div>
+      <div class="secondary-line"><section class="secondary-block"><div class="secondary-title"><h2>انتهت الزيارة</h2><small>آخر ثلاث حالات</small></div><div class="mini-row"><span>ملف ١٠٤٢ · متابعة</span><span>٠٩:٤٨ · اكتملت</span></div><div class="mini-row"><span>ملف ١٩٣٣ · كشف</span><span>٠٩:٣٦ · اكتملت</span></div><div class="mini-row"><span>ملف ٥٠١٧ · قياسات</span><span>٠٩:٢٢ · اكتملت</span></div></section><section class="secondary-block"><div class="secondary-title"><h2>إشارة الوردية</h2><small>الاستقبال والطاقم</small></div><div class="mini-row"><span>حضور الفريق</span><span style="color:var(--green)">١٢ / ١٣</span></div><div class="mini-row"><span>متوسط الانتظار</span><span>١٢ دقيقة</span></div><div class="mini-row"><span>المزامنة الأخيرة</span><span style="color:var(--green)">متصلة · ١٠:٢٦</span></div></section></div>
+      <p class="footnote">اتجاه تجريبي للغرف منخفضة الإضاءة. الأسماء والأوقات ومعرّفات الملفات أمثلة غير حقيقية.</p>
+    </section>
+
+    <section class="screen" id="screen-dashboard" aria-label="الحالات" hidden>
+      <div class="page-top"><div><div class="eyebrow">PATIENT FLOW / LIVE LANES</div><h1>الحالات <span style="color:var(--signal)">النشطة</span></h1><p class="lede">تقسيم مسار الزيارة إلى ثلاث مراحل، لتحديد مكان كل ملف من نظرة واحدة.</p></div><div class="clock-block"><strong>٠٨</strong><small>ملفات على المسار</small></div></div>
+      <div class="telemetry"><div class="telemetry-item"><strong>٠٨</strong><span>وصلوا</span></div><div class="telemetry-item"><strong class="accent-num">٠٣</strong><span>داخل الغرف</span></div><div class="telemetry-item"><strong>١٥</strong><span>انتهوا اليوم</span></div><div class="telemetry-item"><strong>١٢ د</strong><span>متوسط الانتظار</span></div></div>
+      <div class="triage-board">
+        <section class="triage-lane"><div class="triage-head"><strong>١ · استقبال</strong><span>٠٨</span></div><div class="triage-row"><strong>ملف ٧٣١٢ · استقبال أولي</strong><small>وصل ٠٩:٤٢ · أمامه ملف واحد</small></div><div class="triage-row"><strong>ملف ٨٤٠٣ · قياسات</strong><small>وصل ٠٩:٤٨ · وحدة الفحوصات</small></div><div class="triage-row"><strong>ملف ٩٢١٧ · مراجعة</strong><small>وصل ٠٩:٥٢ · عيادة ٢</small></div><div class="triage-row"><strong>ملف ٦٣٨١ · استكمال</strong><small>وصل ١٠:٠١ · استقبال</small></div></section>
+        <section class="triage-lane"><div class="triage-head"><strong>٢ · في العيادة</strong><span>٠٣</span></div><div class="triage-row"><strong>ملف ١٠٤٢ · متابعة بعد الإجراء</strong><small>د. سامر · عيادة ٢ · بدأ ٠٩:٣٠</small></div><div class="triage-row"><strong>ملف ٢٢٥٨ · كشف استشاري</strong><small>د. سارة · عيادة ١ · يبدأ الآن</small></div><div class="triage-row"><strong>ملف ٣١٨٦ · قياسات أولية</strong><small>الفحوصات · محطة ٢ · قيد التجهيز</small></div></section>
+        <section class="triage-lane"><div class="triage-head"><strong>٣ · اكتملت</strong><span>١٥</span></div><div class="triage-row"><strong>ملف ١٩٣٣ · كشف عيادة</strong><small>اكتملت الزيارة ٠٩:٣٦</small></div><div class="triage-row"><strong>ملف ٥٠١٧ · قياسات</strong><small>اكتمل الفحص ٠٩:٢٢</small></div><div class="triage-row"><strong>ملف ١٠٤٢ · متابعة</strong><small>اكتملت خطوة الاستقبال</small></div></section>
+      </div>
+      <p class="footnote">الحالات في هذا اللوح افتراضية للعرض، ولا تتصل ببيانات المركز.</p>
+    </section>
+
+    <section class="screen" id="screen-admin" aria-label="الإدارة" hidden>
+      <div class="page-top"><div><div class="eyebrow">SYSTEM CONTROL / AUTHORIZED</div><h1>مركز <span style="color:var(--signal)">الإدارة</span></h1><p class="lede">إدارة النظام كقائمة تحكم مركزة، مع حالة واضحة لكل مجموعة.</p></div><div class="clock-block"><strong>03</strong><small>معاينة مستقلة</small></div></div>
+      <div class="telemetry"><div class="telemetry-item"><strong style="color:var(--green)">مستقر</strong><span>النظام</span></div><div class="telemetry-item"><strong>٠٢</strong><span>مراجعة معلقة</span></div><div class="telemetry-item"><strong style="color:var(--green)">نشط</strong><span>الاتصال</span></div><div class="telemetry-item"><strong>١٦</strong><span>وحدة إدارية</span></div></div>
+      <div class="admin-tools"><input id="admin-search" type="search" placeholder="ابحث عن إعداد أو مهمة" aria-label="بحث إداري"><div class="filters" role="group" aria-label="تصنيف الإدارة"><button type="button" data-filter="all" aria-pressed="true">الكل</button><button type="button" data-filter="team" aria-pressed="false">الفريق</button><button type="button" data-filter="clinic" aria-pressed="false">العيادات</button><button type="button" data-filter="patient" aria-pressed="false">المرضى</button><button type="button" data-filter="system" aria-pressed="false">النظام</button></div></div>
+      <div class="admin-directory">
+        <section class="admin-group" data-group="team"><div class="admin-group-title"><span>01</span><strong>الفريق والصلاحيات</strong></div><div class="admin-entries"><div class="admin-entry" data-category="team" data-search="المستخدمون الحسابات"><strong>المستخدمون والحسابات</strong><span>↗</span></div><div class="admin-entry" data-category="team" data-search="الأطباء التخصصات"><strong>الأطباء والتخصصات</strong><span>↗</span></div><div class="admin-entry" data-category="team" data-search="الأدوار الصلاحيات"><strong>الأدوار والصلاحيات</strong><span>↗</span></div><div class="admin-entry" data-category="team" data-search="الحضور والجداول"><strong>الحضور والجداول</strong><span>↗</span></div></div></section>
+        <section class="admin-group" data-group="clinic"><div class="admin-group-title"><span>02</span><strong>العيادات والخدمات</strong></div><div class="admin-entries"><div class="admin-entry" data-category="clinic" data-search="ربط الخدمات"><strong>ربط الخدمات</strong><span>↗</span></div><div class="admin-entry" data-category="clinic" data-search="الفحوصات الأسعار"><strong>الفحوصات والأسعار</strong><span>↗</span></div><div class="admin-entry" data-category="clinic" data-search="النماذج"><strong>نماذج الفحص</strong><span>↗</span></div><div class="admin-entry" data-category="clinic" data-search="البنتاكام الصور"><strong>البنتاكام والصور</strong><span>↗</span></div></div></section>
+        <section class="admin-group" data-group="patient"><div class="admin-group-title"><span>03</span><strong>المرضى والبوابة</strong></div><div class="admin-entries"><div class="admin-entry" data-category="patient" data-search="سجل المرضى"><strong>سجل المرضى الكلي</strong><span>↗</span></div><div class="admin-entry" data-category="patient" data-search="الأرشيف التاريخي"><strong>الأرشيف التاريخي</strong><span>↗</span></div><div class="admin-entry" data-category="patient" data-search="حجوزات البوابة"><strong>حجوزات البوابة</strong><span>↗</span></div><div class="admin-entry" data-category="patient" data-search="التواصل الرسائل"><strong>التواصل والرسائل</strong><span>↗</span></div></div></section>
+        <section class="admin-group" data-group="system"><div class="admin-group-title"><span>04</span><strong>النظام والصيانة</strong></div><div class="admin-entries"><div class="admin-entry" data-category="system" data-search="حالة النظام الاتصال"><strong>حالة النظام والاتصال</strong><span>↗</span></div><div class="admin-entry" data-category="system" data-search="قاعدة البيانات التحديثات"><strong>قاعدة البيانات والتحديثات</strong><span>↗</span></div><div class="admin-entry" data-category="system" data-search="سجل العمليات"><strong>سجل العمليات</strong><span>↗</span></div><div class="admin-entry" data-category="system" data-search="التسعير"><strong>قواعد التسعير</strong><span>↗</span></div></div></section>
+      </div>
+      <p id="no-results" class="no-results" aria-live="polite">لا توجد إعدادات مطابقة.</p>
+      <p class="footnote">واجهة الإدارة ومؤشرات النظام توضيحية وغير متصلة بالخدمات الفعلية.</p>
+    </section>
+  </main>
+  <script>
+    const screens=[...document.querySelectorAll('.screen')];
+    const labels={home:'لوحة النوبة',dashboard:'الحالات',admin:'الإدارة'};
+    function showView(view){screens.forEach(s=>s.hidden=s.id!==`screen-${view}`);document.querySelectorAll('[data-view]').forEach(b=>{if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});document.title=`SELRS · ${labels[view]||labels.home} · اتجاه 03`;}
+    document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));
+    const focusAction=document.getElementById('focus-action');focusAction.addEventListener('click',()=>{focusAction.textContent='تم فتح المعاينة';});
+    const search=document.getElementById('admin-search');const entries=[...document.querySelectorAll('.admin-entry')];const groups=[...document.querySelectorAll('.admin-group')];let activeFilter='all';
+    function filterAdmin(){const query=search.value.trim().toLocaleLowerCase('ar');let count=0;entries.forEach(e=>{const category=activeFilter==='all'||e.dataset.category===activeFilter;const match=!query||`${e.dataset.search} ${e.innerText}`.toLocaleLowerCase('ar').includes(query);e.hidden=!(category&&match);if(!e.hidden)count++;});groups.forEach(g=>g.hidden=!g.querySelector('.admin-entry:not([hidden])'));document.getElementById('no-results').classList.toggle('visible',count===0);}
+    document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{activeFilter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));filterAdmin();}));search.addEventListener('input',filterAdmin);
+    const requestedView=new URLSearchParams(location.search).get('view');if(['dashboard','admin'].includes(requestedView))showView(requestedView);
+  </script>
+</body>
+</html>
