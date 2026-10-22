@@ -1,9 +1,9 @@
 import { QueueLoadStatus } from "@/components/today/QueueLoadStatus";
 import { TodayRefreshStatus } from "@/components/today/TodayRefreshStatus";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { useAuth } from "@/hooks/useAuth";
-import { useLocation } from "wouter";
+import { Redirect, useLocation } from "wouter";
 import { useMedicalFileLauncher } from "@/hooks/useMedicalFileLauncher";
 import { useTodayQueuePatientsMerged } from "@/hooks/useTodayQueuePatientsMerged";
 import { AppointmentsSection } from "@/components/dashboard/appointments-activity";
@@ -30,7 +30,7 @@ import { Button } from "@/components/ui/button";
 
 // ─── Main page ────────────────────────────────────────────────────────────────
 export default function TodayPatients() {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, loading, user } = useAuth();
   const userRole = String((user as any)?.role ?? "").toLowerCase();
   const [, setLocation] = useLocation();
   const {
@@ -55,12 +55,29 @@ export default function TodayPatients() {
   const { merged, isLoading: queueLoading } = queue;
   const opsQuery = trpc.medical.getTodayOperationLists.useQuery(
     { date: selectedDate },
-    { refetchOnWindowFocus: false },
+    { refetchOnWindowFocus: false, enabled: isAuthenticated },
   );
 
-  useEffect(() => {
-    if (!isAuthenticated) setLocation("/");
-  }, [isAuthenticated, setLocation]);
+  // Render-time auth guard: hooks above always run; protected markup below
+  // only renders once the session is known and authenticated.
+  if (loading) {
+    return (
+      <div
+        className="today-patients-page min-h-screen bg-background p-4 sm:p-6"
+        dir="rtl"
+        aria-busy="true"
+      >
+        <div className="mx-auto w-full max-w-[1600px] space-y-4">
+          <Skeleton className="h-10 w-48 rounded-xl" />
+          <Skeleton className="h-24 w-full rounded-3xl" />
+          <Skeleton className="h-72 w-full rounded-3xl" />
+        </div>
+      </div>
+    );
+  }
+  if (!isAuthenticated) {
+    return <Redirect href="/" />;
+  }
 
   const total = merged.length;
   const treated = merged.filter((p) => p.queueStatus === "treated").length;
