@@ -1,5 +1,7 @@
 import { QueueLoadStatus } from "@/components/today/QueueLoadStatus";
+import { TodayRefreshStatus } from "@/components/today/TodayRefreshStatus";
 import { useState, useEffect } from "react";
+import { toast } from "sonner";
 import { useAuth } from "@/hooks/useAuth";
 import { useLocation } from "wouter";
 import { useMedicalFileLauncher } from "@/hooks/useMedicalFileLauncher";
@@ -43,6 +45,7 @@ export default function TodayPatients() {
   const [portalBookingOpen, setPortalBookingOpen] = useState(false);
   const [totalsOpen, setTotalsOpen] = useState(true);
   const [quickActionsOpen, setQuickActionsOpen] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const [selectedDate, setSelectedDate] = useState(() => getLocalDateIso());
 
@@ -102,9 +105,23 @@ export default function TodayPatients() {
   ];
 
   const isLoading = queueLoading || opsQuery.isLoading;
-  const refreshToday = () => {
-    void utils.medical.getTodayPatientsByQueueStatus.invalidate();
-    void utils.medical.getTodayOperationLists.invalidate();
+  const refreshToday = async () => {
+    setIsRefreshing(true);
+    try {
+      // refetch() resolves with the query result instead of throwing,
+      // so failures surface through status/isError here.
+      const [queueResult, opsResult] = await Promise.all([
+        queue.refetch(),
+        opsQuery.refetch(),
+      ]);
+      if (queueResult.status === "error" || opsResult.status === "error") {
+        toast.error("تعذر تحديث بيانات اليوم");
+      } else {
+        toast.success("تم تحديث بيانات اليوم");
+      }
+    } finally {
+      setIsRefreshing(false);
+    }
   };
 
   return (
@@ -169,16 +186,27 @@ export default function TodayPatients() {
                       type="button"
                       variant="outline"
                       size="icon"
-                      onClick={refreshToday}
-                      disabled={isLoading}
+                      onClick={() => void refreshToday()}
+                      disabled={isLoading || isRefreshing}
+                      aria-busy={isLoading || isRefreshing}
                       aria-label="تحديث"
                       title="تحديث"
                       className="shrink-0 rounded-xl"
                     >
                       <RefreshCw
-                        className={cn("size-4", isLoading && "animate-spin")}
+                        className={cn(
+                          "size-4",
+                          (isLoading || isRefreshing) && "animate-spin",
+                        )}
                       />
                     </Button>
+                    <TodayRefreshStatus
+                      dataUpdatedAt={Math.max(
+                        queue.dataUpdatedAt,
+                        opsQuery.dataUpdatedAt,
+                      )}
+                      isRefreshing={isRefreshing}
+                    />
                     </div>
                   }
                 />
