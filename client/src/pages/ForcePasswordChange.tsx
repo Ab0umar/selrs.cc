@@ -11,11 +11,25 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { FormField } from "@/components/FormField";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
 import { getTrpcErrorMessage } from "@/lib/utils";
+import {
+  CHANGE_PASSWORD_RULES_HINT,
+  CURRENT_PASSWORD_INCORRECT_MESSAGE,
+  validateChangePasswordForm,
+} from "@/lib/change-password-validation";
+import type {
+  ChangePasswordFieldErrors,
+  ChangePasswordFormValues,
+} from "@/lib/change-password-validation";
+import {
+  mapUsernameServerError,
+  validateUsername,
+} from "@/lib/username-validation";
 import { useAuth } from "@/hooks/useAuth";
-import { KeyRound, ShieldAlert, UserRound } from "lucide-react";
+import { KeyRound, Loader2, ShieldAlert, UserRound } from "lucide-react";
 import type { User } from "@shared/types";
 import {
   CHANGE_PASSWORD_RULES_HINT,
@@ -29,6 +43,12 @@ const PASSWORD_FIELD_IDS: Record<keyof ChangePasswordFieldErrors, string> = {
   currentPassword: "currentPasswordRequired",
   newPassword: "newPasswordRequired",
   confirmPassword: "confirmPasswordRequired",
+};
+
+const EMPTY_PASSWORD_FORM: ChangePasswordFormValues = {
+  currentPassword: "",
+  newPassword: "",
+  confirmPassword: "",
 };
 
 const EMPTY_PASSWORD_FORM: ChangePasswordFormValues = {
@@ -202,6 +222,9 @@ export default function ForcePasswordChange() {
                   type="submit"
                   aria-label="حفظ اسم المستخدم"
                   disabled={changeUsernameMutation.isPending}
+                  aria-busy={changeUsernameMutation.isPending}
+                  aria-label="حفظ اسم المستخدم"
+                  title="حفظ اسم المستخدم"
                 >
                   <UserRound aria-hidden className="h-4 w-4" />
                 </Button>
@@ -229,6 +252,7 @@ export default function ForcePasswordChange() {
               </Label>
               <Input
                 id="currentPasswordRequired"
+                name="currentPassword"
                 type="password"
                 autoComplete="current-password"
                 aria-invalid={Boolean(passwordErrors.currentPassword)}
@@ -256,6 +280,7 @@ export default function ForcePasswordChange() {
               <Label htmlFor="newPasswordRequired">كلمة المرور الجديدة</Label>
               <Input
                 id="newPasswordRequired"
+                name="newPassword"
                 type="password"
                 autoComplete="new-password"
                 aria-invalid={Boolean(passwordErrors.newPassword)}
@@ -291,6 +316,7 @@ export default function ForcePasswordChange() {
               </Label>
               <Input
                 id="confirmPasswordRequired"
+                name="confirmPassword"
                 type="password"
                 autoComplete="new-password"
                 aria-invalid={Boolean(passwordErrors.confirmPassword)}
