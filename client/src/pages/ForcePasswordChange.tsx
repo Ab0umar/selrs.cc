@@ -31,24 +31,12 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { KeyRound, Loader2, ShieldAlert, UserRound } from "lucide-react";
 import type { User } from "@shared/types";
-import {
-  CHANGE_PASSWORD_RULES_HINT,
-  validateChangePasswordForm,
-  type ChangePasswordFieldErrors,
-  type ChangePasswordFormValues,
-} from "@/lib/change-password-validation";
 import { validateUsernameField } from "@/lib/force-password-change-validation";
 
 const PASSWORD_FIELD_IDS: Record<keyof ChangePasswordFieldErrors, string> = {
   currentPassword: "currentPasswordRequired",
   newPassword: "newPasswordRequired",
   confirmPassword: "confirmPasswordRequired",
-};
-
-const EMPTY_PASSWORD_FORM: ChangePasswordFormValues = {
-  currentPassword: "",
-  newPassword: "",
-  confirmPassword: "",
 };
 
 const EMPTY_PASSWORD_FORM: ChangePasswordFormValues = {
