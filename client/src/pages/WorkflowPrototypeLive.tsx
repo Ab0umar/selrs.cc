@@ -14,6 +14,7 @@ import { readPrescriptionTemplates, type PrescriptionDraft } from "@/components/
 import ConsultantSheet from "@/pages/ConsultantSheet";
 import { useTodayQueuePatientsMerged } from "@/hooks/useTodayQueuePatientsMerged";
 import { localISODate } from "@/lib/utils";
+import { visitItemIdsForReplace } from "@/lib/visit-item-replace";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/hooks/useAuth";
 import {
@@ -913,18 +914,26 @@ export default function WorkflowPrototypeLive() {
   const [isSavingFinalReport, setIsSavingFinalReport] = useState(false);
 
   useEffect(() => {
-    setSelectedTestIds(
+    const ids = visitItemIdsForReplace(
+      finalTestRequestsQuery.data,
       ((finalTestRequestsQuery.data as any[]) ?? []).flatMap((request) =>
         (request.items ?? []).map((item: any) => item.testId),
       ),
     );
+    if (ids === null) return;
+    setSelectedTestIds(ids);
   }, [activeWorkflowVisitId, finalTestRequestsQuery.data]);
 
   useEffect(() => {
     const items = ((finalPrescriptionsQuery.data as any[]) ?? []).flatMap(
       (prescription) => prescription.items ?? [],
     );
-    setSelectedMedicationIds(items.map((item: any) => item.medicationId));
+    const ids = visitItemIdsForReplace(
+      finalPrescriptionsQuery.data,
+      items.map((item: any) => item.medicationId),
+    );
+    if (ids === null) return;
+    setSelectedMedicationIds(ids);
     setMedicationDetailsById(
       Object.fromEntries(
         items.map((item: any) => [
@@ -1332,31 +1341,43 @@ export default function WorkflowPrototypeLive() {
         });
       }
 
-      await replaceFinalTestRequestMutation.mutateAsync({
-        patientId: selectedLivePatient.id,
-        visitId: activeWorkflowVisitId,
-        items: selectedTestIds.map((testId) => ({ testId: Number(testId) })),
-      });
+      const testIds = visitItemIdsForReplace(
+        finalTestRequestsQuery.data,
+        selectedTestIds.map((testId) => Number(testId)),
+      );
+      if (testIds !== null) {
+        await replaceFinalTestRequestMutation.mutateAsync({
+          patientId: selectedLivePatient.id,
+          visitId: activeWorkflowVisitId,
+          items: testIds.map((testId) => ({ testId })),
+        });
+      }
 
-      await replaceFinalPrescriptionMutation.mutateAsync({
-        patientId: selectedLivePatient.id,
-        visitId: activeWorkflowVisitId,
-        notes: "Updated from final medical report",
-        items: selectedMedicationIds.map((medicationId) => {
-          const medication = medicationItems.find(
-            (item) => String(item.id) === String(medicationId),
-          );
-          const details = medicationDetailsById[String(medicationId)];
-          return {
-            medicationId: Number(medicationId),
-            medicationName: medication?.name || String(medicationId),
-            dosage: details?.dosage || undefined,
-            frequency: details?.frequency || undefined,
-            duration: details?.duration || undefined,
-            instructions: details?.instructions || undefined,
-          };
-        }),
-      });
+      const medicationIds = visitItemIdsForReplace(
+        finalPrescriptionsQuery.data,
+        selectedMedicationIds.map((medicationId) => Number(medicationId)),
+      );
+      if (medicationIds !== null) {
+        await replaceFinalPrescriptionMutation.mutateAsync({
+          patientId: selectedLivePatient.id,
+          visitId: activeWorkflowVisitId,
+          notes: "Updated from final medical report",
+          items: medicationIds.map((medicationId) => {
+            const medication = medicationItems.find(
+              (item) => String(item.id) === String(medicationId),
+            );
+            const details = medicationDetailsById[String(medicationId)];
+            return {
+              medicationId,
+              medicationName: medication?.name || String(medicationId),
+              dosage: details?.dosage || undefined,
+              frequency: details?.frequency || undefined,
+              duration: details?.duration || undefined,
+              instructions: details?.instructions || undefined,
+            };
+          }),
+        });
+      }
 
       await Promise.all([
         doctorReportQuery.refetch(),
