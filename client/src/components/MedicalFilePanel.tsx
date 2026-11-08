@@ -31,6 +31,7 @@ import {
   ADD_OPTIONS,
 } from "@/lib/refractionOptions";
 import { cn } from "@/lib/utils";
+import { visitItemIdsForReplace } from "@/lib/visit-item-replace";
 import { DateInput } from "@/components/ui/date-input";
 import MedicalAssistantPreview from "@/components/medical-assistant/MedicalAssistantPreview";
 import PrescriptionBinding from "@/components/medical-assistant/PrescriptionBinding";
@@ -645,13 +646,23 @@ export default function MedicalFilePanel({
             : [],
         ),
       );
-      setTreatmentDetailsByMedicationId(prescriptionDetails);
+      const loadedTests = visitItemIdsForReplace(
+        visitTestRequestsQuery.data,
+        testIds,
+      );
+      const loadedTreatment = visitItemIdsForReplace(
+        visitPrescriptionsQuery.data,
+        prescriptionMedIds,
+      );
+      if (loadedTreatment !== null) {
+        setTreatmentDetailsByMedicationId(prescriptionDetails);
+      }
 
       setFormData((prev: any) => {
         // Only override tests/treatment if we actually loaded data from the visit
         // Otherwise preserve what the user entered for a new exam
-        const finalTests = testIds;
-        const finalTreatment = prescriptionMedIds;
+        const finalTests = loadedTests ?? prev.tests;
+        const finalTreatment = loadedTreatment ?? prev.treatment;
 
         return {
           ...prev,
@@ -1563,12 +1574,17 @@ export default function MedicalFilePanel({
             const validTests = (formData.tests || []).filter(
               (id: any) => id !== undefined && id !== null,
             );
-            const testItems = validTests.map((testId: number) => ({ testId }));
-            await replaceTestRequestMutation.mutateAsync({
-              patientId,
-              visitId,
-              items: testItems,
-            });
+            const testItems = visitItemIdsForReplace(
+              visitTestRequestsQuery.data,
+              validTests,
+            );
+            if (testItems !== null) {
+              await replaceTestRequestMutation.mutateAsync({
+                patientId,
+                visitId,
+                items: testItems.map((testId) => ({ testId: Number(testId) })),
+              });
+            }
           }
 
           // Replace the visit prescription, including clearing it when no items remain.
@@ -1576,23 +1592,30 @@ export default function MedicalFilePanel({
             const validMeds = (formData.treatment || []).filter(
               (id: any) => id !== undefined && id !== null,
             );
-            const prescriptionItems = validMeds.map((medId: number) => {
-              const medication = medicationsQuery.data?.find(
-                (m: any) => m.id === medId,
-              );
-              return {
-                medicationId: medId,
-                medicationName: medication?.name || `Med ${medId}`,
-                ...(treatmentDetailsByMedicationId[medId] ?? {}),
-              };
-            });
+            const medicationIds = visitItemIdsForReplace(
+              visitPrescriptionsQuery.data,
+              validMeds,
+            );
+            if (medicationIds !== null) {
+              const prescriptionItems = medicationIds.map((medId) => {
+                const id = Number(medId);
+                const medication = medicationsQuery.data?.find(
+                  (m: any) => m.id === id,
+                );
+                return {
+                  medicationId: id,
+                  medicationName: medication?.name || `Med ${id}`,
+                  ...(treatmentDetailsByMedicationId[id] ?? {}),
+                };
+              });
 
-            await replacePrescriptionWithItemsMutation.mutateAsync({
-              patientId: patientId,
-              visitId: visitId,
-              notes: "Prescribed from medical file panel",
-              items: prescriptionItems,
-            });
+              await replacePrescriptionWithItemsMutation.mutateAsync({
+                patientId: patientId,
+                visitId: visitId,
+                notes: "Prescribed from medical file panel",
+                items: prescriptionItems,
+              });
+            }
           }
 
           if (finishAfterSave.current) {
